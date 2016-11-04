@@ -1,0 +1,5 @@
+/**
+\mainpage Telemetry
+
+The Telemetry application is responsible for establishing a bidirectional communication between telemetry devices and remote cloud. The Telemetry devices include the sensors (temperature, light, motion, PIR), vending machine peripherals, Wi-Fi devices, Bluetooth etc.
+*/

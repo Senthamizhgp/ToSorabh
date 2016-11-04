@@ -1,0 +1,101 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+*.pdb
+*.lo
+*.la
+*.o
+
+# Libraries
+*.lib
+*.a
+*.exp
+*.ilk
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Backup files
+*.bak
+*.suo
+
+# Archive files
+*.rar
+*.zip
+
+# Visual Studio local files
+*.suo
+*.sdf
+*.user
+*.opensdf
+*.aps
+*.APS
+*.ilk
+*.sdf
+*.exp
+*.pdb
+*.iobj
+*.ipdb
+Debug
+Release
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+
+# QT generated files
+ui_*
+moc_*
+*.pro.user
+
+# Build directories
+**/Release
+**/Debug
+**/build
+**/Bin
+**/default
+**/Build/*/Build/
+
+#CMake temporary files
+**/CMakeFiles/
+CMakeCache.txt
+
+#Klockwork temporary files
+**/.klockwork
+**/.Klockwork
+**/.klokwork
+**/.klocwork
+**/Klockwork
+**/Klocwork
+.klocwork
+.kwlp
+.kwps
+
+#temporary Doxygen files
+**/html
+**/latex
+
+#temporary files
+*~
+*.bak
+
+#Eclipse
+Eclipse_Build
+
+#HTML files
+*.html
+*.js
+*.css
+
+#image files
+*.png

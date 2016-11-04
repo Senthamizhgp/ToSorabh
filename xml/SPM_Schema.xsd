@@ -1,0 +1,2869 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TestSchema"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           >
+  <xs:element name="sunsetpass">
+    <xs:complexType>
+      <xs:all>
+		<xs:element name="dev_interfaces_config">
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="dev_interface_config" type="dev_interfaceType" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+        <xs:element name="system">
+          <xs:complexType>
+            <xs:all>             
+              <xs:element name="devices">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="coinacceptors">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="coinacceptor" type="coinAcceptorType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyCA">
+                        <xs:selector xpath="coinacceptor" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="coindispensers">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="coindispenser" type="coinDispenserType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyCD">
+                        <xs:selector xpath="coindispenser" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="billacceptors">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="billacceptor" type="billAcceptorType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyBA">
+                        <xs:selector xpath="billacceptor" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+					<xs:element name="billdispensers">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="billdispenser" type="billDispenserType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyBD">
+                        <xs:selector xpath="billdispenser" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="itemdispensers">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="itemdispenser" type="itemdispenserType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyID">
+                        <xs:selector xpath="itemdispenser" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="keylocks">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="keylock" type="keylockType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyKL">
+                        <xs:selector xpath="keylock" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="lights">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="light" type="lightType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyLight">
+                        <xs:selector xpath="light" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="sensors">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="sensor" type="sensorType" maxOccurs="unbounded"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeySendor">
+                        <xs:selector xpath="sensor" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="dex_devices">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dex_device" type="dex_deviceType"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyDS">
+                        <xs:selector xpath="dex_device" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="motion_sensors">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="motion_sensor" type="motion_sensorType"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyMS">
+                        <xs:selector xpath="motion_sensor" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="seven_segment_displays">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="seven_segment_display" type="SSDType" minOccurs="1" maxOccurs="1"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeySSD">
+                        <xs:selector xpath="seven_segment_display" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="power_managers">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="power_manager" type="PMType" minOccurs="1" maxOccurs="1"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyPM">
+                        <xs:selector xpath="power_manager" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="cashless_payment_terminals">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="cashless_payment_terminal" type="cashless_PTType" maxOccurs="unbounded"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyCPT">
+                        <xs:selector xpath="cashless_payment_terminal" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                    <xs:element name="line_displays">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="line_display" type="linedisplayType"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:unique name="idKeyLD">
+                        <xs:selector xpath="line_display" />
+                        <xs:field xpath="@id" />
+                      </xs:unique>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="system_config">
+          <xs:complexType>
+            <xs:sequence>
+			  <xs:element name="communication_channel_config" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+					<xs:sequence>
+						<xs:element name="channel_type" minOccurs="1" maxOccurs="1" >
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="USB" />
+									<xs:enumeration value="SERIAL" />
+									<xs:enumeration value="ETHERNET" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="com_name" minOccurs="0" maxOccurs="1" >
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+              </xs:element>
+			  <xs:element name="port_shared" minOccurs="0" maxOccurs="2">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="protocol" minOccurs="2" maxOccurs="2">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="MDB" />
+									<xs:enumeration value="PROTOCOL_A" />
+									<xs:enumeration value="CCTALK" />
+									<xs:enumeration value="DEX" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+              </xs:element>
+			  <xs:element name="sysfs_path" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="gpio_path">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="pwm_path">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="adc_path">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			  </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+		<xs:element name="active_devices" type="deviceListType" minOccurs="0"/>
+	    <xs:element name="inactive_devices" type="deviceListType" minOccurs="0"/>
+		<xs:element name="pin_config" minOccurs="0" maxOccurs="1">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="pin_mux" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="physical_pin">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+											<xs:maxLength value="50" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="sysfs_gpio" minOccurs="1" maxOccurs="2">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="gpio" type="xs:integer" />
+											<xs:element name="value" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+											<xs:element name="direction" minOccurs="0" maxOccurs="1">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="in" />
+														<xs:enumeration value="out" />
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="deviceListType">
+	<xs:all>
+	  <xs:element name="coinacceptors">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="coinacceptor" type="dynamicCAParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameCA">
+                <xs:selector xpath="coinacceptor"/>
+                <xs:field xpath="@name"/>
+        </xs:unique>
+	  </xs:element>
+	  <xs:element name="coindispensers">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="coindispenser" type="dynamicCDParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameCD">
+                <xs:selector xpath="coindispenser"/>
+                <xs:field xpath="@name"/>
+        </xs:unique>
+	  </xs:element>
+	  <xs:element name="billacceptors">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="billacceptor" type="dynamicBAParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameBA">
+                <xs:selector xpath="billacceptor"/>
+                <xs:field xpath="@name"/>
+        </xs:unique>
+	  </xs:element>
+	  <xs:element name="billdispensers">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="billdispenser" type="dynamicBDParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameBD">
+                <xs:selector xpath="billdispenser"/>
+                <xs:field xpath="@name"/>
+        </xs:unique>
+	  </xs:element>
+	  <xs:element name="itemdispensers">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="itemdispenser" type="dynamicIDParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameID">
+                <xs:selector xpath="itemdispenser"/>
+                <xs:field xpath="@name"/>
+        </xs:unique>
+	  </xs:element>
+	  <xs:element name="keylocks">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="keylock" type="dynamicKLParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameKL">
+                <xs:selector xpath="keylock"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	  <xs:element name="lights">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="light" type="dynamicLightParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameL">
+                <xs:selector xpath="light"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	  <xs:element name="sensors">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="sensor" type="dynamicSensorParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameS">
+                <xs:selector xpath="sensor"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	  <xs:element name="dex_devices">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="dex_device" type="dynamicDEXParams" minOccurs="0" maxOccurs="1" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameDD">
+                <xs:selector xpath="dex_device"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	  <xs:element name="motion_sensors">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="motion_sensor" type="dynamicMSParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameMS">
+                <xs:selector xpath="motion_sensor"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	  <xs:element name="seven_segment_displays">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="seven_segment_display" type="dynamicSSDParams" minOccurs="0" maxOccurs="1" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameSSD">
+                <xs:selector xpath="seven_segment_display"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	  <xs:element name="power_managers">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="power_manager" type="dynamicPMParams" minOccurs="0" maxOccurs="1" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="namePM">
+                <xs:selector xpath="power_manager"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	  <xs:element name="cashless_payment_terminals">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="cashless_payment_terminal" type="dynamicCPParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameCP">
+                <xs:selector xpath="cashless_payment_terminal"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	  <xs:element name="line_displays">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="line_display" type="dynamicLDParams" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+		<xs:unique name="nameLD">
+                <xs:selector xpath="line_display"/>
+                <xs:field xpath="@name"/>
+		</xs:unique>
+	  </xs:element>
+	</xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="dev_interfaceType">
+    <xs:all>
+      <xs:element name="vmc_address" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="4" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="poll_rate" type="pollRateType" minOccurs="0" />
+      <xs:element name="baudrate" type="baudratesType" minOccurs="0" />
+      <xs:element name="parity" type="paritiesType" minOccurs="0" />
+      <xs:element name="stopbit" type="stopbitsType" minOccurs="0" />
+      <xs:element name="databit" type="databitsType" minOccurs="0" />
+      <xs:element name="response_timeout" type="xs:integer" minOccurs="0" />
+      <xs:element name="non_response_timeout" type="xs:integer" minOccurs="0" />
+      <xs:element name="comm_id" type="xs:integer" minOccurs="0" />
+      <xs:element name="revision_level" type="revision_levelType" minOccurs="0" />
+      <xs:element name="clock_freq" type ="xs:nonNegativeInteger" minOccurs="0" />
+	  <xs:element name="i2c_rate" type ="xs:nonNegativeInteger" minOccurs="0" />
+      <xs:element name="mode" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="chip_select" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="type" type="InterfaceType"/>
+  </xs:complexType>
+
+  <xs:complexType name="coinAcceptorType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="port" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+	  <xs:element name="active_currency" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+			<xs:maxLength value="2" />
+			<xs:enumeration value="EU" />
+			<xs:enumeration value="US" />
+			<xs:enumeration value="GB" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="capabilities" type="CapabilitiesType" />
+      <xs:element name="version" type="xs:float" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="feature_level" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name ="feature_decode" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="changer_level" type="ByteResponseType" />
+            <xs:element name="country_currency_code" type="ByteResponseType" />
+            <xs:element name="scaling_factor" type="ByteResponseType" />
+            <xs:element name="decimal_places" type="ByteResponseType" />
+            <xs:element name="coin_type_routing" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_0" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_1" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_2" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_3" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_4" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_5" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_6" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_7" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_8" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_9" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_10" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_11" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_12" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_13" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_14" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_15" type="ByteResponseType" />
+            <xs:element name="tube_full_status" type="ByteResponseType" />
+            <xs:element name="tube_status_0" type="ByteResponseType" />
+            <xs:element name="tube_status_1" type="ByteResponseType" />
+            <xs:element name="tube_status_2" type="ByteResponseType" />
+            <xs:element name="tube_status_3" type="ByteResponseType" />
+            <xs:element name="tube_status_4" type="ByteResponseType" />
+            <xs:element name="tube_status_5" type="ByteResponseType" />
+            <xs:element name="tube_status_6" type="ByteResponseType" />
+            <xs:element name="tube_status_7" type="ByteResponseType" />
+            <xs:element name="tube_status_8" type="ByteResponseType" />
+            <xs:element name="tube_status_9" type="ByteResponseType" />
+            <xs:element name="tube_status_10" type="ByteResponseType" />
+            <xs:element name="tube_status_11" type="ByteResponseType" />
+            <xs:element name="tube_status_12" type="ByteResponseType" />
+            <xs:element name="tube_status_13" type="ByteResponseType" />
+            <xs:element name="tube_status_14" type="ByteResponseType" />
+            <xs:element name="tube_status_15" type="ByteResponseType" />
+            <xs:element name="coin_routing" type="ByteResponseType" />
+            <xs:element name="coin_type_deposited" type="ByteResponseType" />
+            <xs:element name="accepted_num_of_coin_in_tube" type="ByteResponseType" />
+            <xs:element name="num_of_coins_dispensed" type="ByteResponseType" />
+            <xs:element name="coin_type_dispensed" type="ByteResponseType" />
+            <xs:element name="dispensed_num_of_coins_in_tube" type="ByteResponseType" />
+            <xs:element name="poll_status" type="ByteResponseType" />
+            <xs:element name="poll_slug" type="ByteResponseType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="command_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="reset_cmd" type="CodeDeviation" />
+            <xs:element name="setup_cmd" type="CodeDeviation" />
+            <xs:element name="tube_status_cmd" type="CodeDeviation" />
+            <xs:element name="poll_cmd" type="CodeDeviation" />
+            <xs:element name="coin_type_cmd" type="CodeDeviation" />
+            <xs:element name="just_reset_cmd" type="CodeDeviation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="checksum_type" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="CHK_8" />
+            <xs:enumeration value="CRC_CCITT_16" />
+            <xs:enumeration value="CRC_ENCRYPT_16" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cmd_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="cmd" minOccurs="0" >
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="actual_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="deviated_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+              </xs:complexType>
+              <xs:unique name="idCACmd">
+                <xs:selector xpath="cmd"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+	  <xs:element name="sorter_paths" minOccurs="0">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sorter_path" minOccurs="1" maxOccurs="8">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="coin_position" minOccurs="1" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:positiveInteger">
+										<xs:maxInclusive value="16" />
+										<xs:minInclusive value="1" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="path_number" minOccurs="1" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:positiveInteger">
+										<xs:maxInclusive value="8" />
+										<xs:minInclusive value="1" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+					</xs:complexType>
+					<xs:unique name="idSorterPathKey">
+						<xs:selector xpath="sorther_path"/>
+						<xs:field xpath="@id"/>
+					</xs:unique>
+				</xs:element>
+            </xs:sequence>
+        </xs:complexType>
+	  </xs:element>
+      <xs:element name="poll_response_type_identification" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="coin_deposited" type="ByteResponseType" />
+            <xs:element name="status" type="ByteResponseType" />
+            <xs:element name="slug" type="ByteResponseType" />
+            <xs:element name="coin_dispensed_manually" type="ByteResponseType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="poll_status_code" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="escrow_request" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="changer_payout_busy" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="no_credit" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="defective_tube_sensor" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="double_arrival" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="acceptor_unplugged" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="tube_jam" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="rom_checksum_error" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="coin_routing_error" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="changer_busy" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="changer_was_reset" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="coin_jam" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="possible_credited_coin_removal" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="coinAcceptorIdType"/>
+  </xs:complexType>
+  <xs:complexType name="dynamicCAParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="library_path" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="coinAcceptorIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="coinDispenserType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="port" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="capabilities" type="CapabilitiesType" />
+      <xs:element name="version" type="xs:float" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="feature_level" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name ="feature_decode" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="changer_level" type="ByteResponseType" />
+            <xs:element name="country_currency_code" type="ByteResponseType" />
+            <xs:element name="scaling_factor" type="ByteResponseType" />
+            <xs:element name="decimal_places" type="ByteResponseType" />
+            <xs:element name="coin_type_routing" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_0" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_1" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_2" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_3" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_4" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_5" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_6" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_7" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_8" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_9" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_10" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_11" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_12" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_13" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_14" type="ByteResponseType" />
+            <xs:element name="coin_type_credit_15" type="ByteResponseType" />
+            <xs:element name="tube_full_status" type="ByteResponseType" />
+            <xs:element name="tube_status_0" type="ByteResponseType" />
+            <xs:element name="tube_status_1" type="ByteResponseType" />
+            <xs:element name="tube_status_2" type="ByteResponseType" />
+            <xs:element name="tube_status_3" type="ByteResponseType" />
+            <xs:element name="tube_status_4" type="ByteResponseType" />
+            <xs:element name="tube_status_5" type="ByteResponseType" />
+            <xs:element name="tube_status_6" type="ByteResponseType" />
+            <xs:element name="tube_status_7" type="ByteResponseType" />
+            <xs:element name="tube_status_8" type="ByteResponseType" />
+            <xs:element name="tube_status_9" type="ByteResponseType" />
+            <xs:element name="tube_status_10" type="ByteResponseType" />
+            <xs:element name="tube_status_11" type="ByteResponseType" />
+            <xs:element name="tube_status_12" type="ByteResponseType" />
+            <xs:element name="tube_status_13" type="ByteResponseType" />
+            <xs:element name="tube_status_14" type="ByteResponseType" />
+            <xs:element name="tube_status_15" type="ByteResponseType" />
+            <xs:element name="coin_routing" type="ByteResponseType" />
+            <xs:element name="coin_type_deposited" type="ByteResponseType" />
+            <xs:element name="accepted_num_of_coin_in_tube" type="ByteResponseType" />
+            <xs:element name="num_of_coins_dispensed" type="ByteResponseType" />
+            <xs:element name="coin_type_dispensed" type="ByteResponseType" />
+            <xs:element name="dispensed_num_of_coins_in_tube" type="ByteResponseType" />
+            <xs:element name="poll_status" type="ByteResponseType" />
+            <xs:element name="poll_slug" type="ByteResponseType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="checksum_type" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="CHK_8" />
+            <xs:enumeration value="CRC_CCITT_16" />
+            <xs:enumeration value="CRC_ENCRYPT_16" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cmd_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="deviation_count" type="xs:positiveInteger" minOccurs="0" />
+            <xs:element name="cmd" minOccurs="0" >
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="actual_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="deviated_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+              </xs:complexType>
+              <xs:unique name="idCDCmd">
+                <xs:selector xpath="cmd"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="command_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="reset_cmd" type="CodeDeviation" />
+            <xs:element name="setup_cmd" type="CodeDeviation" />
+            <xs:element name="tube_status_cmd" type="CodeDeviation" />
+            <xs:element name="poll_cmd" type="CodeDeviation" />
+            <xs:element name="coin_type_cmd" type="CodeDeviation" />
+            <xs:element name="dispense_cmd" type="CodeDeviation" />
+            <xs:element name="just_reset_cmd" type="CodeDeviation" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="poll_response_type_identification" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="coin_deposited" type="ByteResponseType" />
+            <xs:element name="status" type="ByteResponseType" />
+            <xs:element name="slug" type="ByteResponseType" />
+            <xs:element name="coin_dispensed_manually" type="ByteResponseType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="poll_status_code" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="escrow_request" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="changer_payout_busy" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="no_credit" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="defective_tube_sensor" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="double_arrival" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="acceptor_unplugged" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="tube_jam" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="rom_checksum_error" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="coin_routing_error" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="changer_busy" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="changer_was_reset" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="coin_jam" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="possible_credited_coin_removal" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+	  <xs:element name="dispenser_type" minOccurs="1" maxOccurs="1">
+		<xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="COIN_CHANGER" />
+            <xs:enumeration value="ACCUMULATOR_HOPPER" />
+            <xs:enumeration value="DISCRIMINATOR_HOPPER" />
+			<xs:enumeration value="SMART_HOPPER" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+	  <xs:element name="coin_values" minOccurs="0">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="coin_value" minOccurs="1" maxOccurs="2">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="value" minOccurs="1" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:positiveInteger">
+										<xs:minInclusive value="1" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+					</xs:complexType>
+					<xs:unique name="idCoinValueKey">
+						<xs:selector xpath="coin_value"/>
+						<xs:field xpath="@id"/>
+					</xs:unique>
+				</xs:element>
+            </xs:sequence>
+        </xs:complexType>
+	  </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="coinDispenserIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicCDParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="library_path" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="coinDispenserIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="billAcceptorType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="port" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="capabilities" type="CapabilitiesType" />
+      <xs:element name="version" type="xs:float" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="feature_level" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name ="feature_decode" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="changer_level" type="ByteResponseType" />
+            <xs:element name="country_currency_code" type="ByteResponseType" />
+            <xs:element name="scaling_factor" type="ByteResponseType" />
+            <xs:element name="decimal_places" type="ByteResponseType" />
+            <xs:element name="stacker_capacity" type="ByteResponseType" />
+            <xs:element name="security_level" type="ByteResponseType" />
+            <xs:element name="escrow_support" type="ByteResponseType" />
+            <xs:element name="bill_routing" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_0" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_1" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_2" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_3" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_4" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_5" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_6" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_7" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_8" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_9" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_10" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_11" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_12" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_13" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_14" type="ByteResponseType" />
+            <xs:element name="bill_type_credit_15" type="ByteResponseType" />
+            <xs:element name="bill_type_deposited" type="ByteResponseType" />
+            <xs:element name="stacker_full_status" type="ByteResponseType" />
+            <xs:element name="poll_status" type="ByteResponseType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="checksum_type" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="CHK_8" />
+            <xs:enumeration value="CRC_CCITT_16" />
+            <xs:enumeration value="CRC_ENCRYPT_16" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cmd_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="deviation_count" type="xs:positiveInteger" minOccurs="0" />
+            <xs:element name="cmd" minOccurs="0" >
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="actual_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="deviated_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+              </xs:complexType>
+              <xs:unique name="idBACmd">
+                <xs:selector xpath="cmd"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="command_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="reset_cmd" type="CodeDeviation" />
+            <xs:element name="setup_cmd" type="CodeDeviation" />
+            <xs:element name="poll_cmd" type="CodeDeviation" />
+            <xs:element name="security_cmd" type="CodeDeviation" />
+            <xs:element name="bill_type_cmd" type="CodeDeviation" />
+            <xs:element name="escrow_cmd" type="CodeDeviation" />
+            <xs:element name="stacker_cmd" type="CodeDeviation" />
+            <xs:element name="just_reset_cmd" type="CodeDeviation" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+	  <xs:element name="sorter_paths" minOccurs="0">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sorter_path" minOccurs="1" maxOccurs="8">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="bill_position" minOccurs="1" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:positiveInteger">
+										<xs:maxInclusive value="16" />
+										<xs:minInclusive value="1" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="path_number" minOccurs="1" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:nonNegativeInteger">
+										<xs:maxInclusive value="8" />
+										<xs:minInclusive value="0" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+					</xs:complexType>
+					<xs:unique name="idBillSorterPathKey">
+						<xs:selector xpath="sorther_path"/>
+						<xs:field xpath="@id"/>
+					</xs:unique>
+				</xs:element>
+            </xs:sequence>
+        </xs:complexType>
+	  </xs:element>
+      <xs:element name="poll_response_type_identification" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="bill_deposited" type="ByteResponseType" />
+            <xs:element name="status" type="ByteResponseType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="poll_status_code" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="defective_motor" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="sensor_problem" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="validator_busy" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="rom_checksum_error" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="validator_jam" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="validator_reset" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="bill_removed" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="cash_box_out_of_position" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="validator_disable" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="invalid_escrow_request" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="bill_rejected" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="possible_credited_bill_removal" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="billAcceptorIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicBAParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="library_path" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="billAcceptorIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+    <xs:complexType name="billDispenserType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="port" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="capabilities" type="CapabilitiesType" />
+      <xs:element name="checksum_type" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="CHK_8" />
+            <xs:enumeration value="CRC_CCITT_16" />
+            <xs:enumeration value="CRC_ENCRYPT_16" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cmd_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="deviation_count" type="xs:positiveInteger" minOccurs="0" />
+            <xs:element name="cmd" minOccurs="0" >
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="actual_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="deviated_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+              </xs:complexType>
+              <xs:unique name="idBDCmd">
+                <xs:selector xpath="cmd"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+	  <xs:element name="dispenser_type" minOccurs="1" maxOccurs="1">
+		<xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="COIN_CHANGER" />
+            <xs:enumeration value="ACCUMULATOR_HOPPER" />
+            <xs:enumeration value="DISCRIMINATOR_HOPPER" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+	  <xs:element name="coin_values" minOccurs="0">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="coin_value" minOccurs="1" maxOccurs="2">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="value" minOccurs="1" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:positiveInteger">
+										<xs:minInclusive value="1" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+					</xs:complexType>
+					<xs:unique name="idBillValueKey">
+						<xs:selector xpath="coin_value"/>
+						<xs:field xpath="@id"/>
+					</xs:unique>
+				</xs:element>
+            </xs:sequence>
+        </xs:complexType>
+	  </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="billDispenserIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicBDParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="library_path" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="billDispenserIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="itemdispenserType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="port">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="capabilities" type="CapabilitiesType" minOccurs="0"/>
+      <xs:element name ="feature_decode" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="vmc_feature_level" type="ByteResponseType" />
+            <xs:element name="scaling_factor" type="ByteResponseType" />
+            <xs:element name="decimal_places" type="ByteResponseType" />
+            <xs:element name="vmc_max_response_time" type="ByteResponseType" />
+            <xs:element name="vend_or_home_fail_item_number" type="ByteResponseType" />
+            <xs:element name="vend_or_home_failure" type="ByteResponseType" />
+            <xs:element name="usd_feautre_level" type="ByteResponseType" />
+            <xs:element name="usd_max_price" type="ByteResponseType" />
+            <xs:element name="usd_item_number" type="ByteResponseType" />
+            <xs:element name="usd_max_resp_time" type="ByteResponseType" />
+            <xs:element name="usd_failure" type="ByteResponseType" />
+            <xs:element name="manufacturer_id_code" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_0" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_1" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_2" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_3" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_4" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_5" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_6" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_7" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_8" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_9" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_10" type="ByteResponseType" />
+            <xs:element name="usd_serial_number_11" type="ByteResponseType" />
+            <xs:element name="usd_model_number_0" type="ByteResponseType" />
+            <xs:element name="usd_model_number_1" type="ByteResponseType" />
+            <xs:element name="usd_model_number_2" type="ByteResponseType" />
+            <xs:element name="usd_model_number_3" type="ByteResponseType" />
+            <xs:element name="usd_model_number_4" type="ByteResponseType" />
+            <xs:element name="usd_model_number_5" type="ByteResponseType" />
+            <xs:element name="usd_model_number_6" type="ByteResponseType" />
+            <xs:element name="usd_model_number_7" type="ByteResponseType" />
+            <xs:element name="usd_model_number_8" type="ByteResponseType" />
+            <xs:element name="usd_model_number_9" type="ByteResponseType" />
+            <xs:element name="usd_model_number_10" type="ByteResponseType" />
+            <xs:element name="usd_model_number_11" type="ByteResponseType" />
+            <xs:element name="usd_software_version" type="ByteResponseType" />
+            <xs:element name="usd_optinal_feature" type="ByteResponseType" />
+            <xs:element name="status_req_item_number" type="ByteResponseType" />
+            <xs:element name="status_req_failure" type="ByteResponseType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="command_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="reset_cmd" type="CodeDeviation" />
+            <xs:element name="setup_cmd" type="CodeDeviation" />
+            <xs:element name="poll_cmd" type="CodeDeviation" />
+            <xs:element name="control_enable_cmd" type="CodeDeviation" />
+            <xs:element name="control_disable_cmd" type="CodeDeviation" />
+            <xs:element name="vend_cmd" type="CodeDeviation" />
+            <xs:element name="just_reset_cmd" type="CodeDeviation" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="items" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="vend_code" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="data_byte" minOccurs="2" maxOccurs="2">
+                          <xs:complexType>
+                            <xs:all>
+                              <xs:element name="value" minOccurs="1" maxOccurs="1">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:minLength value="1" />
+                                    <xs:maxLength value="4" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:element>
+                            </xs:all>
+                            <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+                          </xs:complexType>
+                          <xs:unique name="idItemDataByteKey">
+                            <xs:selector xpath="data_byte"/>
+                            <xs:field xpath="@id"/>
+                          </xs:unique>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attribute name="id" type="xs:positiveInteger"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="idItemKey">
+          <xs:selector xpath="item"/>
+          <xs:field xpath="@id"/>
+        </xs:unique>
+      </xs:element>
+      <xs:element name="initialization" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+              <xs:element name="init_seq" type="initSequenceType" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="idKeyInitSeq">
+          <xs:selector xpath="init_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+      <xs:element name="poll_response_type_identification" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="usd_just_reset" type="UsdByteResponseType" />
+            <xs:element name="vend_or_home_success" type="UsdByteResponseType" />
+            <xs:element name="vend_or_home_fail" type="UsdByteResponseType" />
+            <xs:element name="usd_configuration_and_setup_data" type="UsdByteResponseType" />
+            <xs:element name="usd_error_codes" type="UsdByteResponseType" />
+            <xs:element name="usd_peripheral_id_string" type="UsdByteResponseType" />
+            <xs:element name="usd_status_response" type="UsdByteResponseType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="special_commands" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="special_command" type="spMDBCommandType" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="idKeyspMDBCmd">
+          <xs:selector xpath="special_command" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="itemDispenserIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicIDParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="interrupt_pin_number" type="xs:positiveInteger" minOccurs="0"/>
+            <xs:element name="motor_mode" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="normal"/>
+                  <xs:enumeration value="matrix"/>
+                  <xs:enumeration value="exception"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="dispense_type" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="rotation"/>
+                  <xs:enumeration value="time"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="usd_mode" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="2"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="threshold_voltage" minOccurs="0">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="max" type="xs:float" />
+                  <xs:element name="min" type="xs:float" />
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="threshold_current" minOccurs="0">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="max" type="xs:float" />
+                  <xs:element name="min" type="xs:float" />
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="items" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="gpio_combination" maxOccurs="1">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="rotation" type="xs:integer" minOccurs="0"/>
+                        <xs:element name="time" type="xs:integer" minOccurs="0"/>
+                      </xs:sequence>
+                      <xs:attribute name="id" type="xs:positiveInteger"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+              <xs:unique name="idKeyItem">
+                <xs:selector xpath="item"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="itemDispenserIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="keylockType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Manual"/>
+            <xs:enumeration value="Electronic"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="keylockIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicKLParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="positions" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="pos" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:complexContent>
+                        <xs:extension base="gpioType">
+                          <xs:attribute name="id">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:positiveInteger">
+                                <xs:maxInclusive value="3" />
+                                <xs:minInclusive value="1" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:attribute>
+                        </xs:extension>
+                      </xs:complexContent>
+                    </xs:complexType>
+                    <xs:unique name="idKeyPosition">
+                      <xs:selector xpath="gpio"/>
+                      <xs:field xpath="@id"/>
+                    </xs:unique>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="keylockIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="lightType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="capabilities" type="CapabilitiesType" />
+    </xs:all>
+    <xs:attribute name="id" type="lightIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicLightParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="feature_decode">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="light_on" type="gpioType">
+                    <xs:unique name="idKeyLightOn">
+                      <xs:selector xpath="gpio"/>
+                      <xs:field xpath="@id"/>
+                    </xs:unique>
+                  </xs:element>
+                  <xs:element name="light_off" type="gpioType">
+                    <xs:unique name="idKeyLightOff">
+                      <xs:selector xpath="gpio"/>
+                      <xs:field xpath="@id"/>
+                    </xs:unique>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="lightIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="sensorType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="type" type="sensornameTypes" />
+      <xs:element name="gen_sensor_type" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="port" minOccurs="0" maxOccurs="1" />
+      <xs:element name="device_class" type="oneWireDeviceClassType" minOccurs="0" maxOccurs="1">
+        <xs:unique name="idOneWireDevClassDataByte">
+          <xs:selector xpath="data_byte" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+      <xs:element name="unit" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="celsius"/>
+            <xs:enumeration value="fahrenheit"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="voltage_measurement_unit" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="mV"/>
+            <xs:enumeration value="V"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="current_measurement_unit" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="mA"/>
+            <xs:enumeration value="A"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="fan_speed_measurement_unit" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="rpm"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="slave_address" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="response_timeout" type="xs:nonNegativeInteger" minOccurs="0" />
+      <xs:element name="search_interval" type="xs:nonNegativeInteger" minOccurs="0" />
+      <xs:element name="initialization" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:element name="i2c_init_seq" type="i2cSequenceType" maxOccurs="unbounded" />
+              <xs:element name="spi_init_seq" type="spiSequenceType" maxOccurs="unbounded" />
+              <xs:element name="oneWire_init_seq" type="oneWireSequenceType" maxOccurs="unbounded" />
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="idKeyI2CInitSeq">
+          <xs:selector xpath="i2c_init_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+        <xs:unique name="idKeySPIInitSeq">
+          <xs:selector xpath="spi_init_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+        <xs:unique name="idKeyOneWireInitSeq">
+          <xs:selector xpath="oneWire_init_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+      <xs:element name="read_data" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:element name="i2c_read_seq" type="i2cSequenceType" maxOccurs="unbounded"/>
+              <xs:element name="spi_read_seq" type="spiSequenceType" maxOccurs="unbounded" />
+              <xs:element name="oneWire_read_seq" type="oneWireSequenceType" maxOccurs="unbounded" />
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="idKeyI2CReadSeq">
+          <xs:selector xpath="i2c_read_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+        <xs:unique name="idKeySPIReadSeq">
+          <xs:selector xpath="spi_read_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+        <xs:unique name="idKeyOneWireReadSeq">
+          <xs:selector xpath="oneWire_read_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+      <xs:element name="write_data" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+            <xs:element name="spi_write_seq" type="spiSequenceType" maxOccurs="unbounded" />
+            <xs:element name="i2c_write_seq" type="i2cSequenceType" maxOccurs="unbounded" />
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="idKeySPIWriteSeq">
+          <xs:selector xpath="spi_write_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+        <xs:unique name="idKeyI2CWriteSeq">
+          <xs:selector xpath="i2c_write_seq" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+      <xs:element name="tachometer_supported" type="xs:int" minOccurs="0"/>
+      <xs:element name="tachometer_factor" type="xs:int" minOccurs="0"/>
+      <xs:element name="tach_resp_timeout" type="xs:int" minOccurs="0"/>
+      <xs:element name="frequency" type="xs:int" minOccurs="0"/>
+      <xs:element name="max_speed" type="xs:int" minOccurs="0"/>
+	  <xs:element name="smbus_alert" minOccurs="0" maxOccurs="1">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+			  <xs:maxExclusive value="27" />
+			</xs:restriction>
+		</xs:simpleType>
+	  </xs:element>
+	  <xs:element name="repeated_start" minOccurs="0" maxOccurs="1">
+		<xs:simpleType>
+			<xs:restriction base="xs:nonNegativeInteger">
+			  <xs:maxExclusive value="2" />
+			</xs:restriction>
+		</xs:simpleType>
+	  </xs:element>
+	  <xs:element name="conversion_coefficient" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+	  <xs:element name="conversion_constant" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:attribute name="id" type="sensorIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicSensorParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="default_speed" type="xs:int" minOccurs="0"/>
+            <xs:element name="read_sensor" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="gpio" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="number">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                              <xs:maxExclusive value="500" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="value" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="direction" minOccurs="0" maxOccurs="1">
+						 <xs:simpleType>
+						   <xs:restriction base="xs:string">
+								<xs:enumeration value="in" />
+								<xs:enumeration value="out" />
+						   </xs:restriction>
+						 </xs:simpleType>
+						</xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="id" type="xs:integer" use="required" />
+                    </xs:complexType>
+                    <xs:unique name="idKeyGPIOread">
+                      <xs:selector xpath="gpio" />
+                      <xs:field xpath="@id" />
+                    </xs:unique>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+			<xs:element name="write_sensor" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="gpio" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="number">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                              <xs:maxExclusive value="500" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="value" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="direction" minOccurs="0" maxOccurs="1" >
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="in" />
+									<xs:enumeration value="out" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="id" type="xs:integer" use="required" />
+                    </xs:complexType>
+                    <xs:unique name="idKeyGPIOwrite">
+                      <xs:selector xpath="gpio" />
+                      <xs:field xpath="@id" />
+                    </xs:unique>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+			<xs:element name="channels" minOccurs="0">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="channel" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+								<xs:minInclusive value="0" />
+								<xs:maxInclusive value="50" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="iio_device_number" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">						
+								<xs:minInclusive value="0" />
+								<xs:maxInclusive value="10" /> 
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="sensorIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="dex_deviceType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="comm_id" type="xs:positiveInteger" />
+      <xs:element name="revision_level" type="revision_levelType" />
+      <xs:element name="baudrate" type="baudratesType" />
+      <xs:element name="bus_timeout" type="xs:positiveInteger" />
+      <xs:element name="parity" type="paritiesType" />
+      <xs:element name="stopbit" type="stopbitsType" />
+      <xs:element name="databit" type="databitsType" />
+    </xs:all>
+    <xs:attribute name="id" type="dex_deviceIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicDEXParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="dex_deviceIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="motion_sensorType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="motion_sensorIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicMSParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="feature_decode">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="motion_on" type="gpioType">
+                    <xs:unique name="idKeyMotionOn">
+                      <xs:selector xpath="gpio"/>
+                      <xs:field xpath="@id"/>
+                    </xs:unique>
+                  </xs:element>
+                  <xs:element name="motion_off" type="gpioType">
+                    <xs:unique name="idKeyMotionOff">
+                      <xs:selector xpath="gpio"/>
+                      <xs:field xpath="@id"/>
+                    </xs:unique>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="motion_sensorIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="SSDType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="seven_segment_displayIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicSSDParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="seven_segment_displayIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="PMType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="power_managerIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicPMParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="power_managerIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="cashless_PTType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="port" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+	  <xs:element name="active_currency" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+			<xs:maxLength value="2" />
+			<xs:enumeration value="EU" />
+			<xs:enumeration value="US" />
+			<xs:enumeration value="GB" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="version" type="xs:float" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="feature_level" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name ="feature_decode" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="config_info_setup" type="ByteResponseType" />
+            <xs:element name="reader_feature_level_setup" type="ByteResponseType" />
+            <xs:element name="country_currency_code_setup" type="ByteResponseType" />
+            <xs:element name="scale_factor_setup" type="ByteResponseType" />
+            <xs:element name="decimal_places_setup" type="ByteResponseType" />
+            <xs:element name="max_response_time_setup" type="ByteResponseType" />
+            <xs:element name="misc_options_setup" type="ByteResponseType" />
+            <xs:element name="just_reset" type="ByteResponseType" />
+            <xs:element name="config_info" type="ByteResponseType" />
+            <xs:element name="feature_level" type="ByteResponseType" />
+            <xs:element name="country_currency_code" type="ByteResponseType" />
+            <xs:element name="scale_factor" type="ByteResponseType" />
+            <xs:element name="decimal_places" type="ByteResponseType" />
+            <xs:element name="max_response_time" type="ByteResponseType" />
+            <xs:element name="misc_options" type="ByteResponseType" />
+			<xs:element name="begin_session" type="ByteResponseType" />
+			<xs:element name="funds_available" type="ByteResponseType" />
+			<xs:element name="session_cancel_request" type="ByteResponseType" />
+			<xs:element name="vend_approved_p" type="ByteResponseType" />
+			<xs:element name="vend_amount_p" type="ByteResponseType" />
+			<xs:element name="vend_denied_p" type="ByteResponseType" />
+			<xs:element name="end_session_p" type="ByteResponseType" />
+			<xs:element name="cancelled_p" type="ByteResponseType" />
+			<xs:element name="peripheral_id" type="ByteResponseType" />
+			<xs:element name="manufacturer_code" type="ByteResponseType" />
+			<xs:element name="serial_number_01" type="ByteResponseType" />
+			<xs:element name="serial_number_02" type="ByteResponseType" />
+			<xs:element name="serial_number_03" type="ByteResponseType" />
+			<xs:element name="serial_number_04" type="ByteResponseType" />
+			<xs:element name="serial_number_05" type="ByteResponseType" />
+			<xs:element name="serial_number_06" type="ByteResponseType" />
+			<xs:element name="serial_number_07" type="ByteResponseType" />
+			<xs:element name="serial_number_08" type="ByteResponseType" />
+			<xs:element name="serial_number_09" type="ByteResponseType" />
+			<xs:element name="serial_number_10" type="ByteResponseType" />
+			<xs:element name="serial_number_11" type="ByteResponseType" />
+			<xs:element name="serial_number_12" type="ByteResponseType" />
+            <xs:element name="model_number_01" type="ByteResponseType" />
+            <xs:element name="model_number_02" type="ByteResponseType" />
+			<xs:element name="model_number_03" type="ByteResponseType" />
+			<xs:element name="model_number_04" type="ByteResponseType" />
+			<xs:element name="model_number_05" type="ByteResponseType" />
+			<xs:element name="model_number_06" type="ByteResponseType" />
+			<xs:element name="model_number_07" type="ByteResponseType" />
+			<xs:element name="model_number_08" type="ByteResponseType" />
+			<xs:element name="model_number_09" type="ByteResponseType" />
+			<xs:element name="model_number_10" type="ByteResponseType" />
+			<xs:element name="model_number_11" type="ByteResponseType" />
+			<xs:element name="model_number_12" type="ByteResponseType" />
+			<xs:element name="software_version" type="ByteResponseType" />
+			<xs:element name="error" type="ByteResponseType" />
+            <xs:element name="error_code" type="ByteResponseType" />
+            <xs:element name="manufacturer_defined_subcode" type="ByteResponseType" />
+            <xs:element name="command_out_seq" type="ByteResponseType" />
+			<xs:element name="revalue_request" type="ByteResponseType" />
+			<xs:element name="revalue_limit_request" type="ByteResponseType" />
+			<xs:element name="revalue_limit_request_1" type="ByteResponseType" />
+			<xs:element name="revalue_limit_request_2" type="ByteResponseType" />
+            <xs:element name="vend_approved" type="ByteResponseType" />
+            <xs:element name="vend_amount" type="ByteResponseType" />
+			<xs:element name="vend_denied" type="ByteResponseType" />
+			<xs:element name="end_session" type="ByteResponseType" />
+			<xs:element name="cancelled" type="ByteResponseType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="command_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="reset_cmd" type="CodeDeviation" />
+            <xs:element name="setup_cmd" type="CodeDeviation" />
+            <xs:element name="setup_price_cmd" type="CodeDeviation" />
+            <xs:element name="poll_cmd" type="CodeDeviation" />
+            <xs:element name="vend_request_cmd" type="CodeDeviation" />
+            <xs:element name="vend_cancel_cmd" type="CodeDeviation" />
+			<xs:element name="vend_success_cmd" type="CodeDeviation" />
+			<xs:element name="vend_failure_cmd" type="CodeDeviation" />
+			<xs:element name="vend_session_complete_cmd" type="CodeDeviation" />
+			<xs:element name="vend_cash_sale_cmd" type="CodeDeviation" />
+			<xs:element name="reader_disable_cmd" type="CodeDeviation" />
+			<xs:element name="reader_enable_cmd" type="CodeDeviation" />
+			<xs:element name="reader_cancel_cmd" type="CodeDeviation" />
+			<xs:element name="revalue_request_cmd" type="CodeDeviation" />
+			<xs:element name="revalue_limit_request_cmd" type="CodeDeviation" />
+			<xs:element name="expansion_identification_cmd" type="CodeDeviation" />
+			<xs:element name="just_reset_cmd" type="CodeDeviation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cmd_code_deviations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="cmd" minOccurs="0" >
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="actual_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="deviated_code" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+              </xs:complexType>
+              <xs:unique name="idCPCmd">
+                <xs:selector xpath="cmd"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="poll_response_type_identification" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="status" type="ByteResponseType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="poll_status_code" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="just_reset" type="xs:integer" minOccurs="0" maxOccurs="1" />
+            <xs:element name="reader_config_data" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="display_request" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="begin_session" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="session_cancel_req" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="vend_approved" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="vend_denied" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="end_session" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="cancelled" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="peripheral_id" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="malfunction_error" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+            <xs:element name="cmd_out_seq" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+			<xs:element name="revalue_approved" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+			<xs:element name="revalue_denied" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+			<xs:element name="revalue_limit_amount" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="cashless_PTIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicCPParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="library_path" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+			<xs:element name="transaction_timeout" type="xs:int" minOccurs="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="cashless_PTIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="linedisplayType">
+    <xs:all>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="line_displayIdType" />
+  </xs:complexType>
+  <xs:complexType name="dynamicLDParams">
+    <xs:all>
+      <xs:element name="dynamic_params">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="port" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="library_path" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+			<xs:element name="interface" type="InterfaceType" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+	<xs:attribute name="device_id" type="line_displayIdType"/>
+	<xs:attribute name="name" type="nameType" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="baudratesType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="2400"/>
+      <xs:enumeration value="9600"/>
+      <xs:enumeration value="19200"/>
+      <xs:enumeration value="38400"/>
+      <xs:enumeration value="56000"/>
+      <xs:enumeration value="115200"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="pollRateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="20"/>
+      <xs:enumeration value="40"/>
+	  <xs:enumeration value="60"/>
+	  <xs:enumeration value="100"/>
+      <xs:enumeration value="200"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="revision_levelType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="R01L01" />
+      <xs:enumeration value="R00L06" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="stopbitsType">
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="databitsType">
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+      <xs:enumeration value="8"/>
+      <xs:enumeration value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="paritiesType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="InterfaceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="USB"/>
+      <xs:enumeration value="MDB"/>
+      <xs:enumeration value="GPIO"/>
+      <xs:enumeration value="CCTALK"/>
+      <xs:enumeration value="PWM"/>
+      <xs:enumeration value="TACHOMETER"/>
+      <xs:enumeration value="I2C"/>
+      <xs:enumeration value="SPI"/>
+      <xs:enumeration value="PROTOCOL_A"/>
+      <xs:enumeration value="DEX"/>
+      <xs:enumeration value="ONEWIRE"/>
+      <xs:enumeration value="ANALOG_VOLTAGE"/>
+	  <xs:enumeration value="LOCAL_PORT_I2C_0"/>
+	  <xs:enumeration value="LOCAL_PORT_I2C_1"/>
+	  <xs:enumeration value="USB_RELAY_GPO"/>
+	  <xs:enumeration value="LOCAL_PORT_PWM"/>
+	  <xs:enumeration value="LOCAL_PORT_GPI"/>
+	  <xs:enumeration value="LOCAL_PORT_GPO"/>
+	  <xs:enumeration value="LOCAL_PORT_VOLTAGE"/>
+      <xs:enumeration value="LOCAL_PORT_SPI"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CommandType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RESET"/>
+      <xs:enumeration value="POLL"/>
+      <xs:enumeration value="SETUP"/>
+      <xs:enumeration value="TUBE_STATUS"/>
+      <xs:enumeration value="COIN_TYPE"/>
+      <xs:enumeration value="JUST_RESET"/>
+      <xs:enumeration value="STACKER"/>
+      <xs:enumeration value="CONTROL_DISABLE"/>
+      <xs:enumeration value="CONTROL_ENABLE"/>
+	  <xs:enumeration value="VEND"/>
+	  <xs:enumeration value="READER"/>
+	  <xs:enumeration value="EXPANSION"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="CapabilitiesType">
+    <xs:all>
+      <xs:element name="cap_full_sensor" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_near_full_sensor" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_jam_sensor" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_pause_deposit" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_real_time_data" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_adjust_cash_count" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_empty_sensor" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_near_empty_sensor" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_individual_slot_status" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_alarm" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_blink" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="cap_color" type="xs:boolean" minOccurs="0"/>
+	  <xs:element name="cap_read_cash_count" type="xs:boolean" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:simpleType name="sensornameTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Fan Speed"/>
+      <xs:enumeration value="Generic"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ByteResponseType">
+    <xs:sequence>
+      <xs:element name="cmd" type="CommandType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="response_data_offset" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="response_data_size" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="response_data_mask" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="10" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="spMDBCommandType">
+    <xs:sequence>
+      <xs:element name="code" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="4" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="sub_code" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="4" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="timeout" minOccurs="1" maxOccurs="1" type="xs:positiveInteger" />
+      <xs:element name="vmc_data" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data_byte" minOccurs="0" maxOccurs="34">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="value" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+              </xs:complexType>
+              <xs:unique name="idDataByteKey">
+                <xs:selector xpath="data_byte"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="UsdByteResponseType">
+    <xs:sequence>
+      <xs:element name="cmd" type="CommandType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="response_data_size" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="validation_data_offset" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="validation_data_size" type="xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="validation_value" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="16" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CodeDeviation">
+    <xs:sequence>
+      <xs:element name="code" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="sub_code" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="request_data_size" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="response_data_size" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gpioType">
+    <xs:sequence>
+      <xs:element name="gpio" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="number">
+              <xs:simpleType>
+                <xs:restriction base="xs:integer">
+                  <xs:maxExclusive value="27" />
+                  <xs:minExclusive value="0" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="expected_value" type="xs:boolean" />
+          </xs:sequence>
+          <xs:attribute name="id" type="xs:int" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="initSequenceType">
+    <xs:all>
+      <xs:element name="cmd" type="CommandType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="vmc_data" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data_byte" minOccurs="0" maxOccurs="34">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="value" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+              </xs:complexType>
+              <xs:unique name="idVMCDataByteKey">
+                <xs:selector xpath="data_byte"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="usd_data" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data_byte" minOccurs="0" maxOccurs="34">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="value" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
+              </xs:complexType>
+              <xs:unique name="idUSDDataByteKey">
+                <xs:selector xpath="data_byte"/>
+                <xs:field xpath="@id"/>
+              </xs:unique>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="retry_count" type="xs:integer" minOccurs="1" maxOccurs="1" />
+      <xs:element name="delay" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:integer" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="i2cSequenceType">
+    <xs:all>
+      <xs:element name="register_address" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="r_w_flag">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="write" />
+            <xs:enumeration value="read" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="values" minOccurs="0" maxOccurs="1">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="value" type="valueType" minOccurs="1" maxOccurs="254" />
+		    </xs:sequence>
+		</xs:complexType>
+      </xs:element>
+      <xs:element name="response_data_offset" type="xs:integer" minOccurs="0" />
+      <xs:element name="response_data_mask" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="4" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="delay" type="xs:integer" minOccurs="0" />
+      <xs:element name="read_data_length" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="write" type="i2cWriteType" minOccurs="0" maxOccurs="1">
+        <xs:unique name="idI2CDataByte">
+          <xs:selector xpath="data_byte" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:integer" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="i2cWriteType">
+    <xs:sequence>
+      <xs:element name="write_data_length" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="data_byte" minOccurs="0" maxOccurs="248">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="value" minOccurs="0" maxOccurs="1">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="4" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+          <xs:attribute name="id" type="xs:integer" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="spiSequenceType">
+    <xs:all>
+      <xs:element name="r_w_flag" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="write" />
+            <xs:enumeration value="read" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="read_data_length" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="write" type="spiWriteType" minOccurs="1" maxOccurs="1">
+        <xs:unique name="idSPIDataByte">
+          <xs:selector xpath="data_byte" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+      <xs:element name="delay" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+    </xs:all>
+    <xs:attribute name="id" type="xs:integer" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="spiWriteType">
+    <xs:sequence>
+      <xs:element name="write_data_length" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="data_byte" minOccurs="0" maxOccurs="248">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="value" minOccurs="0" maxOccurs="1">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="4" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+          <xs:attribute name="id" type="xs:integer" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="oneWireSequenceType">
+    <xs:all>
+      <xs:element name="r_w_flag" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="write" />
+            <xs:enumeration value="read" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="reset_flag" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="read_data_length" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="write" type="oneWireWriteType" minOccurs="1" maxOccurs="1">
+        <xs:unique name="idOneWireDataByte">
+          <xs:selector xpath="data_byte" />
+          <xs:field xpath="@id" />
+        </xs:unique>
+      </xs:element>
+      <xs:element name="delay" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+    </xs:all>
+    <xs:attribute name="id" type="xs:integer" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="oneWireWriteType">
+    <xs:sequence>
+      <xs:element name="append_address" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="write_data_length" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="data_byte" minOccurs="0" maxOccurs="248">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="value" minOccurs="0" maxOccurs="1">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="4" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+          <xs:attribute name="id" type="xs:integer" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="oneWireDeviceClassType">
+    <xs:sequence>
+      <xs:element name="data_byte" minOccurs="0" maxOccurs="8">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="value" minOccurs="0" maxOccurs="1">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="4" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+          <xs:attribute name="id" type="xs:integer" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:simpleType name="nameType">
+    <xs:restriction base="xs:string">
+	<xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="valueType">
+     <xs:restriction base="xs:string">
+		<xs:minLength value="1" />
+		<xs:maxLength value="4" />
+	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="coinAcceptorIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1099" />
+      <xs:minInclusive value="1000" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="coinDispenserIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1199" />
+      <xs:minInclusive value="1100" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="billAcceptorIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1299" />
+      <xs:minInclusive value="1200" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="billDispenserIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="2399" />
+      <xs:minInclusive value="2300" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="itemDispenserIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1399" />
+      <xs:minInclusive value="1300" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="keylockIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1499" />
+      <xs:minInclusive value="1400" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="lightIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1599" />
+      <xs:minInclusive value="1500" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sensorIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1699" />
+      <xs:minInclusive value="1600" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="dex_deviceIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1799" />
+      <xs:minInclusive value="1700" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="motion_sensorIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1899" />
+      <xs:minInclusive value="1800" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="seven_segment_displayIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="1999" />
+      <xs:minInclusive value="1900" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="power_managerIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="2099" />
+      <xs:minInclusive value="2000" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="cashless_PTIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="2199" />
+      <xs:minInclusive value="2100" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="line_displayIdType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:maxInclusive value="2299" />
+      <xs:minInclusive value="2200" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

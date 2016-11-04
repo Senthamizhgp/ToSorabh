@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+*************************************************************************************************
+										Intel_SPM device configuration file
+Project		Intel Sunset Pass
+Copyright	2010-2015 All rights reserved
+
+				The software supplied herewith by Intel's vendor to Intel for Sunset Pass Project 
+				for use exclusively on PC. The software is owned by the Intel, and is protected 
+				under applicable copyright laws.
+*************************************************************************************************
+This is the setup specific configuration file with the list of devices which operator wants to activate.
+Following is the brief detail about the elements present in the file.
+	coinacceptors				:	Element listing all the Coin Acceptor device(s) user wants to activate
+	coindispensers				:	Element listing all the Coin Dispenser device(s) user wants to activate
+	billacceptors				:	Element listing all the Bill Acceptor device(s) user wants to activate
+	itemdispensers				:	Element listing all the Item Dispenser device(s) user wants to activate
+	keylocks						:	Element listing all the Key Lock device(s) user wants to activate
+	lights						:	Element listing all the Light device(s) user wants to activate
+	sensors						:	Element listing all the Sensor device(s) user wants to activate
+	dex_devices					:	Element listing all the DEX device(s) user wants to activate
+	motion_sensors				:	Element listing all the Motion Sensor device(s) user wants to activate 
+	seven_segment_displays		:	Element listing all the Seven Segment display device(s) user wants to activate 
+	power_managers				:	Element listing all the Power Manager device(s) user wants to activate
+	cashless_payment_terminals 	:	Element listing all the Cashless Payment device(s) user wants to activate
+	line_displays				:	Element listing all the Line Display device(s) user wants to activate
+-->
+<!DOCTYPE sunsetpass [
+	<!ENTITY systemConfig SYSTEM "SPM_DeviceConfiguration.xml">
+]>
+
+<sunsetpass>
+	<!--
+	Element listing all the supported device interfaces with their id and other interface (or protocol) specific information
+	-->
+	<dev_interfaces_config>
+		<dev_interface_config type="MDB">
+			<!-- "selected_id" attribute indicates the current selected poll rate in milliseconds -->
+			<poll_rate>20</poll_rate>
+			<!--"baudrate" element must be one of the supported baud rates-->
+			<baudrate>9600</baudrate>
+			<!--"databit" element must be one of the supported data bits-->
+			<databit>9</databit>
+			<!--"stopbit" element must be one of the supported stop bits-->
+			<stopbit>0</stopbit>
+			<!--"parity" element must be one of the supported bit parity-->
+			<parity>0</parity>
+			<!--Maximum command response time out in seconds-->
+			<response_timeout>5</response_timeout>
+			<!--Maximum non-response time out in seconds, to be used while device power-on sequence-->
+			<non_response_timeout>10</non_response_timeout>
+		</dev_interface_config>
+		<dev_interface_config type="CCTALK">
+			<!-- Host(VMC) address -->
+			<vmc_address>0x01</vmc_address>
+			<!-- "selected_id" attribute indicates the current selected poll rate in milliseconds -->
+			<poll_rate>200</poll_rate>
+			<!--"baudrate" element must be one of the supported baud rates-->
+			<baudrate>9600</baudrate>
+			<!--"databit" element must be one of the supported data bits-->
+			<databit>8</databit>
+			<!--"stopbit" element must be one of the supported stop bits-->
+			<stopbit>0</stopbit>
+			<!--"parity" element must be one of the supported bit parity-->
+			<parity>0</parity>
+			<!--Maximum command response time out in seconds-->
+			<response_timeout>5</response_timeout>
+			<!--Maximum non-response time out in seconds, to be used while device power-on sequence-->
+			<non_response_timeout>10</non_response_timeout>
+		</dev_interface_config>
+		<dev_interface_config type="PROTOCOL_A">
+			<!--"baudrate" element must be one of the supported baud rates-->
+			<baudrate>9600</baudrate>
+			<!--"databit" element must be one of the supported data bits-->
+			<databit>8</databit>
+			<!--"stopbit" element must be one of the supported stop bits-->
+			<stopbit>0</stopbit>
+			<!--"parity" element must be one of the supported bit parity-->
+			<parity>2</parity>
+			<!--Maximum command response time out in seconds-->
+			<response_timeout>10</response_timeout>
+			<!--Maximum non-response time out in seconds, to be used while device power-on sequence-->
+			<non_response_timeout>10</non_response_timeout>
+		</dev_interface_config>
+		<dev_interface_config type="DEX">
+			<!--10 Digit alpha-numeric communication ID of the vending expansion card-->
+			<comm_id>1111111111</comm_id>
+			<!--Revision level of vending expansion card, "revision_level" element must be one of the supported DEX revision levels-->
+			<revision_level>R00L06</revision_level>
+		</dev_interface_config>
+		<dev_interface_config type="SPI">
+			<!-- SPI clock frequency in Hz -->
+			<clock_freq>4000000</clock_freq>
+			<!-- 0 = clock is active low and data is captured on rising edge of clock,
+				 1 = clock is active high and data is captured on rising edge of clock,
+				 2 = clock is active low and data is captured on falling edge of clock,
+				 3 = clock is active high and data is captured on falling edge of clock -->
+			<mode>2</mode>
+			<!-- SPI Chip select : 0 Active low, 1 Active High -->
+			<chip_select>1</chip_select>
+		</dev_interface_config>
+		<dev_interface_config type="I2C">
+			<!--Supported mode for I2C speed
+			100000   : Standard Mode
+			400000   : Fast Mode
+			1000000 : Fast Plus Mode
+			-->			
+			<i2c_rate>100000</i2c_rate>
+		</dev_interface_config>
+	</dev_interfaces_config>
+	
+	<!--
+		Element listing overall system configurations. 
+		User will have to specify following system configurations:
+		1) channel_type : Indicates the current channel out of USB, SERIAL and ETHERNET.
+		2) com_name : User need to enter COM port(e.g. COM5) if USB or SERIAL channel is selected.
+		3) mdb_protocola_selection : Indicates the current protocol out of MDB and PROTOCOL_A.
+		4) cctalk_dex_selection : Indicates the current protocol out of CCTALK and DEX.
+		5) Kernel tree paths for GPI, PWM and ADC.
+	-->
+	<system_config>
+		<communication_channel_config>
+			<channel_type>USB</channel_type>
+			<com_name>/dev/ttyACM0</com_name>
+		</communication_channel_config>
+
+	</system_config>
+
+	&systemConfig;
+
+	<!--
+		Pin configurations for supported peripherals regarding Local Port Support.
+		User has to specify following configurations:
+		1) pin direction
+		2) pull up/down
+		3) pin muxing
+	-->
+	
+	
+	<!-- Element listing all the devices which should be activated by the HLAPI -->
+	<active_devices>
+		<!--
+			Element listing all the supported coin acceptor devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "coinacceptors" element of SPM_DeviceConfiguration.xml.
+			
+			Following are list of dynamic parameters which should be entered by user when USB based coin acceptor(id="1000") activated in configuration.
+			1) Port : USB COM port of host where this particular device is connected.For example, COM1
+			2) library_path : Translation library path. All the vendor specific libraries should be beside Translation library. 
+							  For example, C:\Windows\NRITranslationLibrary.dll
+		-->
+		<coinacceptors>
+			
+		</coinacceptors>
+		<!--
+			Element listing all the supported coin dispenser devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "coindispensers" element of SPM_DeviceConfiguration.xml.
+			
+			Following are list of dynamic parameters which should be entered by user when USB based coin dispenser(id="1100") activated in configuration.
+			1) Port : USB COM port of host where this particular device is connected. For example, COM1
+			2) library_path : Translation library path. All the vendor specific libraries should be beside Translation library. 
+							  For example, C:\Windows\NRITranslationLibrary.dll
+		-->
+		<coindispensers>
+			
+		</coindispensers>
+		<!--
+			Element listing all the supported bill acceptor devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "billacceptors" element of SPM_DeviceConfiguration.xml.
+			
+			Following are list of dynamic parameters which should be entered by user when USB based bill acceptor(id="1200") activated in configuration.
+			1) Port : USB COM port of host where this particular device is connected.For example, COM12
+			2) library_path : Translation library path. All the vendor specific libraries should be beside Translation library. 
+							  For example, C:\Windows\NV9TranslationLibrary.dll
+		-->
+		<billacceptors>
+			
+		</billacceptors>
+		
+		<!--
+			Element listing all the supported item dispenser devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "itemdispensers" element of SPM_DeviceConfiguration.xml.
+			
+			There are two following types of item dispensers supported: 
+			1) MDB based ID (USD Mode 2).
+			2) GPIO based ID (direct control of the motors/spirals).
+
+			Following are list of dynamic parameters which should be entered by user when MDB based ID (id="1300") activated in configuration.
+			1) usd_mode : Currently only USD mode 2 is supported so this tag added for future expansion.
+			
+			Following are list of dynamic parameters which should be entered by user when GPIO based ID (id="1301") activated in configuration.
+			1) interrupt_pin_number :	This is used for rotation based Item dispenser. A GPI pin can be specified using this element. 
+										For each rotation Item dispenser will send interrupt at this pin to confirm one rotation of spiral 
+										dispensing mechanism.
+			2) dispense_type : 	Time or rotation based approach. 
+								In time based Item dispenser user has to specify time (i.e. duration for which motor will on) under <time> tag. 
+								In rotation based Item dispenser user has to specify no of rotation (i.e., motor will spin that number of rotations) 
+								under <rotation> tag.
+			3) threshold_voltage and threshold_current :	Threshold voltage and threshold current are Item dispenser motor’s threshold limits in volts
+															and Amps respectively.User has to update these value based on the motor configuration.
+			4) motor_mode :	There are two types of modes supported - Normal mode and Matrix mode. User has to select one motor mode from these two modes.
+							Based on this type, user has to update <gpio_combination> tag. In normal mode user has to set only one motor pin out of 26 pins 
+							based on motor setup. While in matrix mode user has to set two GPIO pin. Among them one pin from Low Side Bridge (from 11 to 26) 
+							and one pin from High Side Bridge (from 1 to 10) based on motor setup.
+		-->
+		<itemdispensers>
+			
+		</itemdispensers>
+		<!--
+			Element listing all the supported keylock devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "keylocks" element of SPM_DeviceConfiguration.xml.
+			
+			Following are list of dynamic parameters(i.e., GPI/GPO number and its expected value for position-1 and position-2 states) which should be entered by user.
+			1) number : GPI number if connected keylock device is input device and GPO number if connected keylock device is output device(keylock with i-Button).
+			2) expected_value : expected value(i.e., 1 or 0) of GPI/GPO number(i.e., specified in number tag above) to determine/set position-1 or position-2 state.
+		-->
+		<keylocks>
+			
+		</keylocks>
+		<!--
+			Element listing all the supported light devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "lights" element of SPM_DeviceConfiguration.xml.
+			
+			Following are list of dynamic parameters(i.e., GPO number and its expected value for light_on and light_off states) which should be entered by user.
+			1) number : GPO number.
+			2) expected_value : expected value(i.e., 1 or 0) of GPO number(i.e., specified in number tag above) to set light_on or light_off state.
+		-->
+		<lights>
+			
+		</lights>
+		<!--
+			Element listing all the supported sensor devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "sensors" element of SPM_DeviceConfiguration.xml.
+			
+			There are following types of sensors supported: 
+			1)	FAN
+			2)	SPI based sensor
+			3)	I2C based sensor
+			4)	One Wire based sensor
+			5)	GPIO based sensor
+			6)	Analog Voltage sensor
+			
+			Following are list of dynamic parameters which should be entered by user when FAN based sensor(id="1601" or id="1602") activated in configuration.
+			1) default_speed : Default FAN speed in RPM.
+			
+			Following are list of dynamic parameters which should be entered by user when GPI based sensor(id="1603" or id="1604") activated in configuration.
+			1) number : GPI number which value will be returned to User application when it calls sensor read API.
+			2) value : default value of GPI pin. It is not used for GPI based sensor but it is mentiond here to follow GPI based configuration's uniformity in XSD.
+		-->
+		<sensors>
+			<sensor device_id="1603" name="GPI Sensor I">
+				<dynamic_params>
+					<read_sensor>
+						<gpio id="0">
+							<number>11</number>
+							<value>1</value>
+						</gpio>
+					</read_sensor>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>GPIO</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1604" name="GPI Sensor II">
+				<dynamic_params>
+					<read_sensor>
+						<gpio id="0">
+							<number>10</number>
+							<value>1</value>
+						</gpio>
+					</read_sensor>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>GPIO</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1606" name="Temperature sensor 3">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>ONEWIRE</interface>
+				</dynamic_params>
+			</sensor>
+			
+		</sensors>
+		<!--
+			Element listing all the supported dex devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "dex_devices" element of SPM_DeviceConfiguration.xml.
+			
+			Currently only one device is supported and it is referring to Motorola's dex device.
+		-->
+		<dex_devices>
+
+		</dex_devices>
+		<!--
+			Element listing all the supported motion sensor devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "motion_sensors" element of SPM_DeviceConfiguration.xml.
+			
+			Following are list of dynamic parameters(i.e., GPI number and its expected value for motion_on and motion_off states) which should be entered by user.
+			1) number : GPI number
+			2) expected_value : expected value(i.e., 1 or 0) of GPI number(i.e., specified in number tag above) to determine motion_on or motion_off state.
+		-->
+		<motion_sensors>
+			
+		</motion_sensors>
+		<!--
+			Element listing all the supported seven segment devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "seven_segment_displays" element of SPM_DeviceConfiguration.xml.
+			
+			Currently only one device is supported and it is referring to seven segment on SPM board.
+		-->
+		<seven_segment_displays>
+			<seven_segment_display device_id="1900" name="SPM DISPLAY">
+				<dynamic_params>
+				</dynamic_params>
+			</seven_segment_display>
+		</seven_segment_displays>
+		<!--
+			Element listing all the supported power manager devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "power_managers" element of SPM_DeviceConfiguration.xml.
+			
+			Currently only one device is supported and it is pointing to SPM board.
+		-->
+		<power_managers>
+			
+		</power_managers>
+		<!--
+			Element listing all the supported cashless payment terminal devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "cashless_payment_terminals" element of SPM_DeviceConfiguration.xml.
+			
+			Following are list of dynamic parameters which should be entered by user when USB based cashless payment terminal (id="2100") activated in configuration.
+			1) Port : USB COM port of host where this particular device is connected.For example, COM15
+			2) library_path : Translation library path. All the vendor specific libraries should be beside Translation library. 
+							  For example, C:\Windows\IngenicoTranslationLibrary.dll
+		-->
+		<cashless_payment_terminals>
+			
+		</cashless_payment_terminals>
+		<!--
+			Element listing all the supported line display devices. Each device is identified by the unique numeric value indicated by "id" attribute.
+			The device configuration with the "id" attribute must be present in the "line_displays" element of SPM_DeviceConfiguration.xml.
+			
+			Following are list of dynamic parameters which should be entered by user when USB based line display (id="2100") activated in configuration.
+			1) Port : USB COM port of host where this particular device is connected.For example, COM15
+			2) library_path : Translation library path. All the vendor specific libraries should be beside Translation library. 
+							  For example, C:\Windows\IngenicoTranslationLibrary.dll
+		-->
+		<line_displays>
+			
+		</line_displays>
+		
+		<billdispensers>
+
+		</billdispensers>
+	</active_devices>
+	
+	<inactive_devices>
+		<coinacceptors>
+			<coinacceptor device_id="1000" name="NRI USB Coin Acceptor">
+				<dynamic_params>
+					<port>COM1</port>
+					<library_path>C:\Windows\NRITranslationLibrary.dll</library_path>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>USB</interface>
+				</dynamic_params>
+			</coinacceptor>
+			<coinacceptor device_id="1001" name="NRI MDB Coin Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</coinacceptor>
+			<coinacceptor device_id="1002" name="MEI MDB Coin Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</coinacceptor>
+			<coinacceptor device_id="1003" name="Coges MDB Coin Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</coinacceptor>
+			<coinacceptor device_id="1004" name="AZKOYEN CCTALK Coin Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</coinacceptor>
+			<coinacceptor device_id="1005" name="NRI G-13 MFT CCTALK Coin Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</coinacceptor>
+			<coinacceptor device_id="1006" name="Gardian ProtocolA Coin Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>PROTOCOL_A</interface>
+				</dynamic_params>
+			</coinacceptor>
+			<coinacceptor device_id="1007" name="NRI ProtocolA Coin Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>PROTOCOL_A</interface>
+				</dynamic_params>
+			</coinacceptor>
+			<coinacceptor device_id="1008" name="RM5 HD CCTALK Coin Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</coinacceptor>
+		</coinacceptors>
+		
+		<coindispensers>
+			<coindispenser device_id="1100" name="NRI USB Coin Dispenser">
+				<dynamic_params>
+					<port>COM1</port>
+					<library_path>C:\Windows\NRITranslationLibrary.dll</library_path>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>USB</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1101" name="NRI MDB Coin Dispenser">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1102" name="MEI MDB Coin Dispenser">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1103" name="Coges MDB Coin Dispenser">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1104" name="AZKOYEN CCTALK Hopper I">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1105" name="AZKOYEN CCTALK Discriminator II">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1106" name="AZKOYEN CCTALK Hopper III">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1107" name="Gardian ProtocolA Coin Dispenser">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>PROTOCOL_A</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1108" name="NRI ProtocolA Coin Dispenser">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>PROTOCOL_A</interface>
+				</dynamic_params>
+			</coindispenser>
+			<coindispenser device_id="1109" name="ITL Smart Hopper">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</coindispenser>
+		</coindispensers>
+		<billacceptors>
+		    <billacceptor device_id="1200" name="NV9 USB Bill Acceptor">
+				<dynamic_params>
+					<port>COM8</port>
+					<library_path>C:\Windows\NV9TranslationLibrary.dll</library_path>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>USB</interface>
+				</dynamic_params>
+			</billacceptor>
+			<billacceptor device_id="1201" name="NRI MDB Bill Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</billacceptor>
+			<billacceptor device_id="1202" name="COINCO MDB Bill Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</billacceptor>
+			<billacceptor device_id="1203" name="COGES MDB UP Stacker">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</billacceptor>
+			<billacceptor device_id="1204" name="ITL CCTALK SMART Payout Bill Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</billacceptor>
+			<billacceptor device_id="1205" name="ITL CCTALK NV200 Bill Acceptor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</billacceptor>
+		</billacceptors>
+		
+		<itemdispensers>
+			<itemdispenser device_id="1300" name="Item Dispenser I">
+				<dynamic_params>
+					<usd_mode>2</usd_mode>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</itemdispenser>
+			<itemdispenser device_id="1301" name="Item Dispenser II">
+				<dynamic_params>
+					<interrupt_pin_number>9</interrupt_pin_number>
+					<threshold_voltage>
+						<max>26</max>
+						<min>0</min>
+					</threshold_voltage>
+					<threshold_current>
+						<max>2.5</max>
+						<min>0</min>
+					</threshold_current>
+					<motor_mode>matrix</motor_mode>
+					<dispense_type>time</dispense_type>
+					<items>
+						<item id="1">
+							<gpio_combination>0x00000401</gpio_combination>
+							<rotation>1</rotation>
+							<time>10000</time>
+						</item>
+						<item id="2">
+							<gpio_combination>0x00000500</gpio_combination>
+							<rotation>1</rotation>
+							<time>10000</time>
+						</item>
+						<item id="3">
+							<gpio_combination>0x00000801</gpio_combination>
+							<rotation>1</rotation>
+							<time>10000</time>
+						</item>
+					</items>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>GPIO</interface>
+				</dynamic_params>
+			</itemdispenser>
+		</itemdispensers>
+		
+		<keylocks>
+			<keylock device_id="1400" name="Keylock I">
+				<dynamic_params>
+					<positions>
+						<pos id="1">
+							<gpio id="0">
+								<number>9</number>
+								<expected_value>1</expected_value>
+							</gpio>
+						</pos>
+						<pos id="2">
+							<gpio id="0">
+								<number>9</number>
+								<expected_value>0</expected_value>
+							</gpio>
+						</pos>
+					</positions>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>GPIO</interface>
+				</dynamic_params>
+			</keylock>
+		</keylocks>
+		<lights>
+			<light device_id="1500" name="Lights I">
+				<dynamic_params>
+					<feature_decode>
+						<light_on>
+							<gpio id="0">
+								<number>5</number>
+								<expected_value>1</expected_value>
+							</gpio>
+						</light_on>
+						<light_off>
+							<gpio id="0">
+								<number>5</number>
+								<expected_value>0</expected_value>
+							</gpio>
+						</light_off>
+					</feature_decode>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>GPIO</interface>
+				</dynamic_params>
+			</light>
+		</lights>
+		
+		<sensors>
+			<sensor device_id="1600" name="Temperature Sensor 1">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>I2C</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1600" name="Local Port Temperature Sensor 1">
+				<dynamic_params>
+					<port>/dev/i2c-0</port>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_I2C_0</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1601" name="Fan Speed Sensor I">
+				<dynamic_params>
+					<default_speed>50</default_speed>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>PWM</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1602" name="Fan Speed Sensor II">
+				<dynamic_params>
+					<default_speed>50</default_speed>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>PWM</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1603" name="GPI Sensor I">
+				<dynamic_params>
+					<read_sensor>
+						<gpio id="0">
+							<number>10</number>
+							<value>0</value>
+						</gpio>
+					</read_sensor>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>GPIO</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1604" name="GPI Sensor II">
+				<dynamic_params>
+					<read_sensor>
+						<gpio id="0">
+							<number>12</number>
+							<value>0</value>
+						</gpio>
+					</read_sensor>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>GPIO</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1605" name="Temperature sensor 2">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>SPI</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1606" name="Temperature sensor 3">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>ONEWIRE</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1607" name="i-Button Sensor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>ONEWIRE</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1608" name="Analog Voltage Sensor for SPM">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>ANALOG_VOLTAGE</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1611" name="USB relay Module">
+				<dynamic_params>
+				<!-- USB RELAY COM PORT Value -->
+				<port>COM6</port>
+				<!--Device interface, "interface" element must be one of the supported interfaces-->
+				<interface>USB_RELAY_GPO</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1613" name="Local Port I2C Voltage Sensor 1">
+				<dynamic_params>
+				<!-- Local Port I2C COM PORT Value -->
+				<port>/dev/i2c-0</port>
+				<!--Device interface, "interface" element must be one of the supported interfaces-->
+				<interface>LOCAL_PORT_I2C_0</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1614" name="Local Port I2C Voltage Sensor 2">
+				<dynamic_params>
+				<!-- Local Port I2C COM PORT Value -->
+				<port>/dev/i2c-0</port>
+				<!--Device interface, "interface" element must be one of the supported interfaces-->
+				<interface>LOCAL_PORT_I2C_0</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1615" name="Local Port I2C to OneWire Sensor">
+				<dynamic_params>
+				<!-- I2C COM PORT Value -->
+				<port>/dev/i2c-1</port>
+				<!--Device interface, "interface" element must be one of the supported interfaces-->
+				<interface>LOCAL_PORT_I2C_0</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1620" name="Local Port I2C Door Sensor">
+				<dynamic_params>
+				<!-- Local Port I2C COM PORT Value -->
+				<port>/dev/i2c-0</port>
+				<!--Device interface, "interface" element must be one of the supported interfaces-->
+				<interface>LOCAL_PORT_I2C_0</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1621" name="SMBUS Temperature Sensor 1">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>I2C</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1621" name="Local Port SMBus Temperature Sensor II">
+				<dynamic_params>
+					<port>/dev/i2c-0</port>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_I2C_0</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1622" name="Local Port GPI Sensor I">
+				<dynamic_params>
+					<read_sensor>
+						<gpio id="0"> 
+							<number>10</number>
+							<direction>in</direction>
+						</gpio>
+					</read_sensor>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_GPI</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1623" name="Local Port GPO Sensor I">
+				<dynamic_params>
+					<write_sensor>
+						<gpio id="0">
+							<number>38</number>
+							<direction>out</direction>
+						</gpio>
+					</write_sensor>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_GPO</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1625" name="Local Port Ananlog Read Sensor I">
+				<dynamic_params>
+					<!-- LocalPort ADC : Channel #0-->
+					<channels>
+						<channel>0</channel>
+						<iio_device_number>0</iio_device_number>
+					</channels>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_VOLTAGE</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1626" name="Local Port Analog Read Sensor II">
+				<dynamic_params>
+					<!-- LocalPort ADC : Channel #1-->
+					<channels>
+						<channel>1</channel>
+						<iio_device_number>0</iio_device_number>
+					</channels>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_VOLTAGE</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1627" name="Local Port Analog Read Sensor III">
+				<dynamic_params>
+					<!-- LocalPort ADC : Channel #2-->
+					<channels>
+						<channel>2</channel>
+						<iio_device_number>0</iio_device_number>
+					</channels>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_VOLTAGE</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1628" name="Local Port Ananlog Read Sensor IV">
+				<dynamic_params>
+					<!-- LocalPort ADC : Channel #3-->
+					<channels>
+						<channel>3</channel>
+						<iio_device_number>0</iio_device_number>
+					</channels>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_VOLTAGE</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1629" name="Local Port SPI">
+				<dynamic_params>
+				<!-- SPI COM PORT Value -->
+				<port>/dev/spidev1.0</port>
+				<!--Device interface, "interface" element must be one of the supported interfaces-->
+				<interface>LOCAL_PORT_SPI</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1630" name="Local Port PWM">
+				<dynamic_params>
+					<port>5</port>
+					<default_speed>50</default_speed>
+					<interface>LOCAL_PORT_PWM</interface>
+				</dynamic_params>
+			</sensor>			
+			<sensor device_id="1631" name="SMBus Temperature Sensor">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>I2C</interface>
+				</dynamic_params>
+			</sensor>
+			<sensor device_id="1631" name="Local Port SMBus Temperature Sensor">
+				<dynamic_params>
+					<port>/dev/i2c-0</port>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>LOCAL_PORT_I2C_0</interface>
+				</dynamic_params>
+			</sensor>
+
+		</sensors>
+		
+		<dex_devices>
+			<dex_device device_id="1700" name="Dex I">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>DEX</interface>
+				</dynamic_params>
+			</dex_device>
+		</dex_devices>
+		
+		<motion_sensors>
+			<motion_sensor device_id="1800" name="Motion sensor I">
+				<dynamic_params>
+					<feature_decode>
+						<motion_on>
+							<gpio id="0">
+								<number>11</number>
+								<expected_value>0</expected_value>
+							</gpio>
+						</motion_on>
+						<motion_off>
+							<gpio id="0">
+								<number>11</number>
+								<expected_value>1</expected_value>
+							</gpio>
+						</motion_off>
+					</feature_decode>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>GPIO</interface>
+				</dynamic_params>
+			</motion_sensor>
+		</motion_sensors>
+		
+		<seven_segment_displays>
+		
+		</seven_segment_displays>
+		
+		<power_managers>
+			<power_manager device_id="2000" name="SPM Power Manager">
+				<dynamic_params>
+				</dynamic_params>
+			</power_manager>
+		</power_managers>
+		
+		<cashless_payment_terminals>
+			<cashless_payment_terminal device_id="2100" name="Ingenico USB Cashless Payement terminal">
+				<dynamic_params>
+					<port>COM15</port>
+					<library_path>IngenicoTranslationLibrary.dll</library_path>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>USB</interface>
+				</dynamic_params>
+			</cashless_payment_terminal>
+			<cashless_payment_terminal device_id="2101" name="Secure Head MSR">
+				<dynamic_params>
+					<port>COM5</port>
+					<library_path>SecureHeadTranslationLibrary.dll</library_path>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>USB</interface>
+				</dynamic_params>
+			</cashless_payment_terminal>		
+			<cashless_payment_terminal device_id="2102" name="Kiosk3 Cashless Payement terminal">
+				<dynamic_params>
+					<port>COM15</port>
+					<library_path>Kiosk3TranslationLibrary.dll</library_path>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>USB</interface>
+					<!-- KIOSK III Transaction Timeout, Default timeout is 5 seconds -->
+					<transaction_timeout>10</transaction_timeout>
+				</dynamic_params>
+			</cashless_payment_terminal>
+			<cashless_payment_terminal device_id="2103" name ="Ingenico MDB Cashless Payment terminal">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>MDB</interface>
+				</dynamic_params>
+			</cashless_payment_terminal>
+		</cashless_payment_terminals>
+		
+		<line_displays>
+			<line_display device_id="2200" name="Ingenico Line Disp">
+				<dynamic_params>
+					<port>COM15</port>
+					<library_path>C:\Windows\IngenicoTranslationLibrary.dll</library_path>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>USB</interface>
+				</dynamic_params>
+			</line_display>
+		</line_displays>
+		
+		<billdispensers>
+			<billdispenser device_id="2300" name="ITL CCTALK SMART Payout Bill Dispenser">
+				<dynamic_params>
+					<!--Device interface, "interface" element must be one of the supported interfaces-->
+					<interface>CCTALK</interface>
+				</dynamic_params>
+			</billdispenser>
+		</billdispensers>
+	</inactive_devices>
+</sunsetpass>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  elementFormDefault="qualified" attributeFormDefault="unqualified">         
+         <xs:element name="telemetryconfig">
+               <xs:complexType>
+                     <xs:sequence>
+                           <xs:element name="input_config" minOccurs="1" maxOccurs="1">
+                                 <xs:complexType>
+                                       <xs:sequence>
+                                             <xs:element name="reportingfreq" type="xs:int" minOccurs="1" maxOccurs="1"></xs:element>
+											 <xs:element name="deviceidentifier" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                                             <xs:element name="config_parameter" minOccurs="0" maxOccurs="unbounded">
+                                                   <xs:complexType>
+                                                         <xs:sequence>
+                                                               <xs:element name="globalacquisitionfreq" type="xs:int" minOccurs="0" maxOccurs="unbounded"></xs:element>
+                                                               <xs:element name="sensoracquisitionfreq" minOccurs="0" maxOccurs="unbounded">
+                                                                     <xs:complexType>
+                                                                           <xs:attribute name="sensor_name" type="xs:string" use="required"></xs:attribute>
+                                                                           <xs:attribute name="acquisitionfreq" type="xs:int" use="optional"></xs:attribute>
+                                                                     </xs:complexType>
+                                                               </xs:element>
+                                                               <xs:element name="event" minOccurs="0" maxOccurs="unbounded">
+                                                                     <xs:complexType>
+                                                                           <xs:attribute name="sensor_name" type="xs:string"></xs:attribute>
+                                                                     </xs:complexType>
+                                                               </xs:element>	   																
+															   <xs:element name="acquisitionfreq" type="xs:int" minOccurs="0" maxOccurs="unbounded"></xs:element>
+															   <xs:element name="device" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+															   <xs:element name="rssi" type="xs:int" minOccurs="0" maxOccurs="1"></xs:element>
+															   <xs:element name="purgingfreq" type="xs:int" minOccurs="0" maxOccurs="1"></xs:element>
+   															   <xs:element name="depthValue" type="xs:int" minOccurs="0" maxOccurs="1"></xs:element>
+															   <xs:element name="enableWindow" type="xs:boolean" minOccurs="0" maxOccurs="1"></xs:element>
+															   <xs:element name="sub_type" minOccurs="0" maxOccurs="2">
+																	<xs:complexType>
+																		<xs:sequence>															
+																			<xs:element name="hostname" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+																			<xs:element name="username" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+																			<xs:element name="password" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+																			<xs:element name="databasename" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+																			<xs:element name="port" type="xs:int" minOccurs="1" maxOccurs="1"></xs:element>	
+																			<xs:element name="json_header" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="audit_report_type" type="xs:string" use="required">
+																							</xs:attribute>
+																						</xs:extension>	
+																					</xs:simpleContent>	
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="external_module" minOccurs="0" maxOccurs="unbounded">
+																			<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="plugin" minOccurs="0" maxOccurs="unbounded">
+																					<xs:complexType>
+																						<xs:attribute name="plugin_name" type="xs:string"></xs:attribute>
+																						<xs:attribute name="state" type="xs:string"></xs:attribute>
+																					</xs:complexType>
+																			   </xs:element>
+																			</xs:sequence>
+																			<xs:attribute name="type" type="xs:string" use="required"></xs:attribute>
+																			<xs:attribute name="state" type="xs:string" use="required"></xs:attribute>
+																			</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="type" use="required">
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="Audit"/>
+																					<xs:enumeration value="Telemetry"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="state" type="xs:string" use="required"></xs:attribute>
+																	</xs:complexType>															   
+															   </xs:element>
+															   <xs:element name="json_header" type="xs:string" minOccurs="0" maxOccurs="unbounded"></xs:element>
+															   <xs:element name="external_module" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="plugin" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:attribute name="plugin_name" type="xs:string"></xs:attribute>
+																					<xs:attribute name="state" type="xs:string"></xs:attribute>
+																				</xs:complexType>
+																		   </xs:element>
+																		</xs:sequence>
+                                                                           <xs:attribute name="type" type="xs:string" use="required"></xs:attribute>
+                                                                           <xs:attribute name="state" type="xs:string" use="required"></xs:attribute>
+																	</xs:complexType>
+															   </xs:element>
+														 </xs:sequence>
+                                                         <xs:attribute name="type" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="SensorTelemetry"/>
+																	<xs:enumeration value="PIR"/>
+																	<xs:enumeration value="WiFi"/>
+																	<xs:enumeration value="BT"/>
+																	<xs:enumeration value="RealSense"/>
+																	<xs:enumeration value="Database"/>											
+																	<xs:enumeration value="General"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+                                                         <xs:attribute name="state" use="optional">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="enable"/>
+																	<xs:enumeration value="disable"/>												
+																</xs:restriction>
+															</xs:simpleType>
+														 </xs:attribute>														 
+														 <xs:attribute name="left_sensor_name" type="xs:string" use="optional"></xs:attribute>
+														 <xs:attribute name="right_sensor_name" type="xs:string" use="optional"></xs:attribute>
+                                                   </xs:complexType>
+                                             </xs:element>
+                                       </xs:sequence>
+                                 </xs:complexType>
+                           </xs:element>
+                           <xs:element name="output_config" minOccurs="1" maxOccurs="1">
+                                 <xs:complexType>
+                                       <xs:sequence>
+                                             <xs:element name="config_parameter" minOccurs="1" maxOccurs="unbounded">
+                                                   <xs:complexType>
+                                                         <xs:sequence>
+                                                               <xs:element name="endPoint" type="xs:string"></xs:element>
+                                                               <xs:element name="TLS" type="xs:int"></xs:element>
+                                                               <xs:element name="QoS" type="xs:int"></xs:element>                                                                                                                          
+                                                               <xs:element name="SendTopic" type="xs:string"></xs:element>
+							       <xs:element name="ReceiveTopic" type="xs:string"></xs:element>
+                                                         </xs:sequence>
+                                                         <xs:attribute name="type" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="MQTT"/>																	
+																</xs:restriction>
+															</xs:simpleType>
+														 </xs:attribute>
+                                                   </xs:complexType>
+                                             </xs:element>
+                                       </xs:sequence>
+                                 </xs:complexType>
+                           </xs:element>
+                     </xs:sequence>
+               </xs:complexType>
+         </xs:element>		 		 
+   </xs:schema>

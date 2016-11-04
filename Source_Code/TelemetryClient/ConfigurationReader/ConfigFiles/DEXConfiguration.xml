@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+*************************************************************************************************
+										Intel_Telemetry DEX configuration file
+Project		Intel Smart Shelf
+Copyright	2010-2015 All rights reserved
+
+				The software supplied herewith by Intel's vendor to Intel for Smart Shelf - Telemetry Client 
+				for use exclusively on PC. The software is owned by the Intel, and is protected 
+				under applicable copyright laws.
+*************************************************************************************************
+This is the global input configuration file with the list of DEX configurable parameters for the DEX report generation
+Following is the brief detail about the elements present in the file.
+
+-->
+<!DOCTYPE DEXconfig [
+	<!ENTITY fileName SYSTEM "DEXConfiguration.xml">
+]>
+<!-- Element listing are all DEX data element configurable parameters. -->
+<DEXconfig>
+	<!-- IMPORTANT NOTE ::  Tag having '*' in its comment informs only provision is provided in filter 
+	and not handled as part of implementation -->
+	<!-- Application Header DXS -->
+	<DataSegment BlockIdentifier="DXS" state="enable">		  
+		<DataElement DXS01="enable"></DataElement> 	<!-- COMMUNICATION_ID_OF_SENDER -->
+		<DataElement DXS02="enable"></DataElement> 	<!-- FUNCTIONAL_IDENTIFIER -->
+		<DataElement DXS03="enable"></DataElement> 	<!-- VERSION -->
+		<DataElement DXS04="enable"></DataElement> 	<!-- TRANSMISSION_CONTROL_NUMBER -->
+		<DataElement DXS05="disable"></DataElement> <!-- * COMMUNICATION_ID_OF_RECIPIENT -->         
+		<DataElement DXS06="disable"></DataElement> <!-- * TEST CODE STATUS -->     		
+	</DataSegment>
+	
+	<DataSegment BlockIdentifier="ST" state="enable">		  
+		<DataElement ST01="enable"></DataElement> 	<!-- TRANSACTION SET HEADER -->
+		<DataElement ST02="enable"></DataElement> 	<!-- TRANSACTION SET CONTROL NUMBER -->
+	</DataSegment>
+
+	<!-- Data Segment ID1 -->
+	<DataSegment BlockIdentifier="ID1" state="enable">		  
+	  <DataElement ID101="enable"></DataElement> 	<!-- MACHINE SERIAL NUMBER -->
+	  <DataElement ID102="enable"></DataElement> 	<!-- MACHINE MODEL NUMBER -->
+	  <DataElement ID103="enable"></DataElement> 	<!-- MACHINE BUILD STANDARD -->
+	  <DataElement ID104="disable"></DataElement> 	<!-- MACHINE LOCATION -->
+	  <DataElement ID105="disable"></DataElement> 	<!-- USER DEFINED FIELD -->
+	  <DataElement ID106="enable"></DataElement> 	<!-- MACHINE ASSET NUMBER -->            
+	</DataSegment>
+	
+	<!-- Data Segment ID4 -->
+	<DataSegment BlockIdentifier="ID4" state="enable">		  
+	  <DataElement ID401="enable"></DataElement> 	<!-- DECIMAL POINT POSITION -->
+	  <DataElement ID402="enable"></DataElement> 	<!-- CURRENCY NUMERIC CODE -->
+	  <DataElement ID403="enable"></DataElement> 	<!-- CURRENCY ALPHABETIC CODE -->       
+	</DataSegment>
+	
+	<!-- Data Segment ID5 -->
+	<DataSegment BlockIdentifier="ID5" state="enable">		  
+	  <DataElement ID501="enable"></DataElement> 	<!-- MACHINE DATE -->
+	  <DataElement ID502="enable"></DataElement> 	<!-- MACHINE TIME -->
+	</DataSegment>
+	
+	<!-- Data Segment CA1 -->
+	<DataSegment BlockIdentifier="CA1" state="enable">		  
+	  <DataElement CA101="enable"></DataElement> 	<!-- CHANGER SERIAL NUMBER -->
+	  <DataElement CA102="enable"></DataElement> 	<!-- COIN MECHANISM MODEL NUMBER -->
+	  <DataElement CA103="enable"></DataElement>	<!-- COIN MECHANISM SOFTWARE REVISION -->
+	  <DataElement CA104="disable"></DataElement>	<!-- * USER DEFINED FIELD -->
+	  <DataElement CA105="enable"></DataElement>	<!-- COIN MECHANISM ASSET NUMBER -->
+	</DataSegment>
+	
+	<!-- Data Segment BA1 -->
+	<DataSegment BlockIdentifier="BA1" state="enable">		  
+	  <DataElement BA101="enable"></DataElement> 	<!-- BILL VALIDATOR SERIAL NUMBER -->
+	  <DataElement BA102="enable"></DataElement> 	<!-- BILL VALIDATOR MODEL NUMBER -->
+	  <DataElement BA103="enable"></DataElement>	<!-- BILL VALIDATOR SOFTWARE REVISION -->
+	  <DataElement BA104="disable"></DataElement>	<!-- * USER DEFINED FIELD -->
+	  <DataElement BA105="enable"></DataElement>	<!-- BILL VALIDATOR ASSET NUMBER -->
+	</DataSegment>
+
+	<!-- Data Segment EA1 -->
+	<DataSegment BlockIdentifier="EA1" state="enable">		  
+	  <DataElement EA101="enable"></DataElement> 	<!-- EVENT IDENTIFICATION -->
+	  <DataElement EA102="enable"></DataElement> 	<!-- DATE OF EVENT -->
+	  <DataElement EA103="enable"></DataElement> 	<!-- TIME OF EVENT -->
+	  <DataElement EA104="enable"></DataElement> 	<!-- DURATION OF EVENT IN MINUTES -->
+	  <DataElement EA105="disable"></DataElement> 	<!-- * EVENT DURATION IN MILLISECONDS -->
+	  <DataElement EA106="disable"></DataElement> 	<!-- * USER DEFINED FIELD -->	  
+	</DataSegment>
+	
+	<!-- Data Segment EA2 -->
+	<DataSegment BlockIdentifier="EA2" state="enable">		  
+	  <DataElement EA201="enable"></DataElement> 	<!-- EVENT IDENTIFICATION -->
+	  <DataElement EA202="enable"></DataElement> 	<!-- NUMBER OF EVENTS SINCE LAST RESET -->
+	  <DataElement EA203="enable"></DataElement> 	<!-- NUMBER OF EVENTS SINCE INITIALIZATION -->
+	  <DataElement EA204="disable"></DataElement> 	<!-- * USER DEFINED FIELD -->
+	  <DataElement EA205="enable"></DataElement> 	<!-- CURRENT EVENT ACTIVITY ( 1=ACTIVE / 0 (OR BLANK) =INACTIVE ) -->
+	  <DataElement EA206="enable"></DataElement> 	<!-- DURATION OF EVENT(S) IN MINUTES (includes multiple occurrences) -->	  
+	</DataSegment>
+	
+	<!-- Data Segment EA3 -->
+	<DataSegment BlockIdentifier="EA3" state="enable">		  
+	  <DataElement EA301="enable"></DataElement> 	<!-- NUMBER OF READS WITH RESET SINCE INITIALIZATION -->
+	  <DataElement EA302="disable"></DataElement> 	<!-- * DATE OF THIS READOUT -->
+	  <DataElement EA303="disable"></DataElement> 	<!-- * TIME OF THIS READOUT -->
+	  <DataElement EA304="disable"></DataElement> 	<!-- * TIME TERMINAL / INTERROGATOR IDENTIFICATION -->
+	  <DataElement EA305="disable"></DataElement> 	<!-- * DATE OF LAST READ OUT -->
+	  <DataElement EA306="disable"></DataElement> 	<!-- * TIME OF LAST READ OUT -->
+	  <DataElement EA307="disable"></DataElement> 	<!-- * LAST TERMINAL / INTERROGATOR IDENTIFICATION -->
+	  <DataElement EA308="disable"></DataElement> 	<!-- * USER DEFINED FIELD -->
+	  <DataElement EA309="disable"></DataElement> 	<!-- * NUMBER OF READS WITH OR WITHOUT RESET SINCE INITIALIZATION -->
+	  <DataElement EA310="disable"></DataElement> 	<!-- * NUMBER OF RESETS SINCE INITIALIZATION -->	  
+	</DataSegment>
+	
+	<!-- Data Segment EA7 -->
+	<DataSegment BlockIdentifier="EA7" state="enable">		  
+	  <DataElement EA701="enable"></DataElement> 	<!-- NUMBER OF POWER OUTAGES SINCE LAST RESET -->
+	  <DataElement EA702="enable"></DataElement> 	<!-- NUMBER OF POWER OUTAGES SINCE INITIALIZATION -->
+	</DataSegment>
+
+	<!--Data Segment VA1 -->
+	<DataSegment BlockIdentifier="VA1" state="enable">	
+	  <DataElement VA101="enable"></DataElement> 	<!-- VALUE OF ALL PAID VEND SALES SINCE INITIALIZATION -->
+	  <DataElement VA102="enable"></DataElement> 	<!-- NUMBER OF ALL PAID VEND SALES SINCE INITIALIZATION -->
+	  <DataElement VA103="enable"></DataElement> 	<!-- VALUE OF ALL PAID VEND SALES SINCE LAST RESET -->
+	  <DataElement VA104="enable"></DataElement> 	<!-- NUMBER OF ALL PAID VEND SALES SINCE LAST RESET -->
+	</DataSegment>
+	
+	<!--Data Segment VA2 -->
+	<DataSegment BlockIdentifier="VA2" state="enable">	
+	  <DataElement VA201="enable"></DataElement> 	<!-- VALUE OF ALL TEST VEND SALES SINCE INITIALIZATION -->
+	  <DataElement VA202="enable"></DataElement> 	<!-- NUMBER OF ALL TEST VEND SALES SINCE INITIALIZATION -->
+	  <DataElement VA203="enable"></DataElement> 	<!-- VALUE OF ALL TEST VEND SALES SINCE LAST RESET -->
+	  <DataElement VA204="enable"></DataElement> 	<!-- NUMBER OF ALL TEST VEND SALES SINCE LAST RESET -->
+	</DataSegment>
+
+	<!--Data Segment VA3 -->
+	<DataSegment BlockIdentifier="VA3" state="enable">	
+	  <DataElement VA301="enable"></DataElement> 	<!-- VALUE OF ALL FREE VEND SALES SINCE INITIALIZATION -->
+	  <DataElement VA302="enable"></DataElement> 	<!-- NUMBER OF ALL FREE VEND SALES SINCE INITIALIZATION -->
+	  <DataElement VA303="enable"></DataElement> 	<!-- VALUE OF ALL FREE VEND SALES SINCE LAST RESET -->
+	  <DataElement VA304="enable"></DataElement> 	<!-- NUMBER OF ALL FREE VEND SALES SINCE LAST RESET -->
+	</DataSegment>	
+	
+	<!--Data Segment CA3 -->
+	<DataSegment BlockIdentifier="CA3" state="enable">	
+	  <DataElement CA301="enable"></DataElement>	<!-- VALUE OF CASH IN SINCE LAST RESET -->
+	  <DataElement CA302="enable"></DataElement>	<!-- VALUE OF CASH TO CASH BOX SINCE LAST RESET -->
+	  <DataElement CA303="enable"></DataElement>	<!-- VALUE OF CASH TO TUBES SINCE LAST RESET -->
+	  <DataElement CA304="enable"></DataElement>	<!-- VALUE OF BILLS IN SINCE LAST RESET -->
+	  <DataElement CA305="enable"></DataElement>	<!-- VALUE OF CASH IN SINCE INITIALIZATION -->
+	  <DataElement CA306="enable"></DataElement>	<!-- VALUE OF CASH TO BOX SINCE INITIALIZATION -->
+	  <DataElement CA307="enable"></DataElement>	<!-- VALUE OF CASH TO TUBES SINCE INITIALIZATION -->
+	  <DataElement CA308="enable"></DataElement>	<!-- VALUE OF BILLS IN SINCE INITIALIZATION -->
+	  <DataElement CA309="enable"></DataElement>	<!-- VALUE OF BILLS IN SINCE LAST RESET -->
+	  <DataElement CA310="enable"></DataElement>	<!-- VALUE OF BILLS IN SINCE INITIALIZATION -->
+	  <DataElement CA311="disable"></DataElement> 	<!-- VALUE OF BILLS TO RECYCLER SINCE LAST RESET -->
+	  <DataElement CA312="disable"></DataElement> 	<!-- VALUE OF BILLS TO RECYCLER SINCE INITIALIZATION -->
+	</DataSegment>
+ 
+	<!--Data Segment CA4 -->
+	<DataSegment BlockIdentifier="CA4" state="disable">	
+	  <DataElement CA401="disable"></DataElement>   <!-- * VALUE OF CASH DISPENSED SINCE LAST RESET -->
+	  <DataElement CA402="disable"></DataElement>   <!-- * VALUE OF MANUAL CASH DISPENSED SINCE LAST RESET -->
+	  <DataElement CA403="disable"></DataElement>   <!-- * VALUE OF CASH DISPENSED SINCE INITIALIZATION -->
+	  <DataElement CA404="disable"></DataElement>   <!-- * VALUE OF MANUAL CASH DISPENSED SINCE INITIALIZATION -->
+	  <DataElement CA405="disable"></DataElement>   <!-- * VALUE OF BILLS DISPENSED SINCE LAST RESET -->
+	  <DataElement CA406="disable"></DataElement>   <!-- * VALUE OF BILLS MANUALLY DISPENSED SINCE LAST RESET -->
+	  <DataElement CA407="disable"></DataElement>   <!-- * VALUE OF BILLS TRANSFERRED TO RECYCLER SINCE LAST RESET -->
+	  <DataElement CA408="disable"></DataElement>   <!-- * VALUE OF BILLS DISPENSED SINCE INITIALISATION -->
+	  <DataElement CA409="disable"></DataElement>   <!-- * VALUE OF BILLS MANUALLY DISPENSED SINCE INITIATLISATION -->
+	  <DataElement CA410="disable"></DataElement>   <!-- * VALUE OF BILLS TRANSFERRED TO RECYCLER SINCE INITIATLISATION -->
+	</DataSegment>
+	
+	<!-- Data Segment CA9 -->
+	<DataSegment BlockIdentifier="CA9" state="enable">		  
+	  <DataElement CA901="enable"></DataElement> 	<!-- VALUE OF PAY VENDS EXACT CHANGE SINCE LAST RESET -->
+	  <DataElement CA902="enable"></DataElement> 	<!-- VALUE OF PAY VENDS EXACT CHANGE SINCE INITIATLISATION -->
+	</DataSegment>
+	
+	<!-- Data Segment CA10 -->
+	<DataSegment BlockIdentifier="CA10" state="enable">		  
+	  <DataElement CA1001="enable"></DataElement> 	<!-- VALUE OF COINS FILLED SINCE LAST RESET -->
+	  <DataElement CA1002="enable"></DataElement> 	<!-- VALUE OF COINS FILLED SINCE INITIALIZATION -->
+	  <DataElement CA1003="enable"></DataElement> 	<!-- VALUE OF BILLS FILLED SINCE LAST RESET -->
+	  <DataElement CA1004="enable"></DataElement> 	<!-- VALUE OF BILLS FILLED SINCE INITIALISATION -->
+	</DataSegment>	
+	
+	<!--Data Segment CA15 -->
+	<DataSegment BlockIdentifier="CA15" state="enable">	
+	  <DataElement CA1501="enable"></DataElement>   <!-- VALUE OF CASH DISPENSED SINCE LAST RESET -->
+	  <DataElement CA1502="disable"></DataElement>   <!-- * VALUE OF MANUAL CASH DISPENSED SINCE LAST RESET -->
+	  <DataElement CA1503="disable"></DataElement>   <!-- * VALUE OF CASH DISPENSED SINCE INITIALIZATION -->
+	  <DataElement CA1504="disable"></DataElement>   <!-- * VALUE OF MANUAL CASH DISPENSED SINCE INITIALIZATION -->
+	  <DataElement CA1505="disable"></DataElement>   <!-- * VALUE OF BILLS DISPENSED SINCE LAST RESET -->
+	  <DataElement CA1506="disable"></DataElement>   <!-- * VALUE OF BILLS MANUALLY DISPENSED SINCE LAST RESET -->
+	  <DataElement CA1507="disable"></DataElement>   <!-- * VALUE OF BILLS TRANSFERRED TO RECYCLER SINCE LAST RESET -->
+	  <DataElement CA1508="disable"></DataElement>   <!-- * VALUE OF BILLS DISPENSED SINCE INITIALISATION -->
+	  <DataElement CA1509="disable"></DataElement>   <!-- * VALUE OF BILLS MANUALLY DISPENSED SINCE INITIATLISATION -->
+	  <DataElement CA1510="disable"></DataElement>   <!-- * VALUE OF BILLS TRANSFERRED TO RECYCLER SINCE INITIATLISATION -->
+	</DataSegment>
+	
+		<!--Data Segment CA17 -->
+	<DataSegment BlockIdentifier="CA17" state="enable">	
+	  <DataElement CA1701="enable"></DataElement>   <!-- COIN TYPE NUMBER -->
+	  <DataElement CA1702="enable"></DataElement>   <!-- VALUE OF COIN -->
+	  <DataElement CA1703="enable"></DataElement>   <!-- NUMBER OF COINS IN TUBE -->
+	  <DataElement CA1704="enable"></DataElement>   <!-- NUMBER OF COINS INSERTED DURING CONTROLLED MANUAL FILL -->
+	  <DataElement CA1705="enable"></DataElement>   <!-- NUMBER OF COINS DISPENSED DURING CONTROLLED MANUAL INVENT -->
+	  <DataElement CA1706="enable"></DataElement>   <!-- COIN TUBE IS FULL -->
+	</DataSegment>
+	
+	<!-- Data Segment CA22 -->
+	<DataSegment BlockIdentifier="CA22" state="enable">		  
+	  <DataElement CA2201="enable"></DataElement> 	<!-- VALUE OF RECYCLER CONTENTS -->
+	  <DataElement CA2202="disable"></DataElement> 	<!-- * BLOCK NO STORE 1 = BILL TYPE 0-7, STORE 2 = BILL TYPE 8-15 -->
+	  <DataElement CA2203="disable"></DataElement>	<!-- * BILL TYPE 0 OR 7 COUNT -->
+	  <DataElement CA2204="disable"></DataElement>	<!-- * BILL TYPE 1 OR 8 COUNT -->
+	  <DataElement CA2205="disable"></DataElement>	<!-- * BILL TYPE 2 OR 9 COUNT -->
+	  <DataElement CA2206="disable"></DataElement> 	<!-- * BILL TYPE 3 OR 10 COUNT -->
+	  <DataElement CA2207="disable"></DataElement> 	<!-- * BILL TYPE 4 OR 11 COUNT -->
+	  <DataElement CA2208="disable"></DataElement> 	<!-- * BILL TYPE 5 OR 12 COUNT -->
+	  <DataElement CA2209="disable"></DataElement> 	<!-- * BILL TYPE 6 OR 13 COUNT -->
+	  <DataElement CA2210="disable"></DataElement> 	<!-- * BILL TYPE 7 OR 14 COUNT -->
+	</DataSegment>
+ 
+	<!-- Data Segment TA2 -->
+	<DataSegment BlockIdentifier="TA2" state="enable">		  
+	  <DataElement TA201="enable"></DataElement> 	<!-- VALUE OF TOKEN (COUPON) SALES SINCE INITIALIZATION -->
+	  <DataElement TA202="enable"></DataElement> 	<!-- NUMBER OF TOKEN (COUPON) SALES SINCE INITIALIZATION -->
+	  <DataElement TA203="enable"></DataElement>	<!-- VALUE OF TOKEN (COUPON) SALES SINCE LAST RESET -->
+	  <DataElement TA204="enable"></DataElement>	<!-- NUMBER OF TOKEN (COUPON) SALES SINCE LAST RESET -->
+	  <DataElement TA205="disable"></DataElement>	<!-- * VALUE OF VALUE TOKEN (COUPON) SALES SINCE INITIALIZATION -->
+	  <DataElement TA206="disable"></DataElement> 	<!-- * NUMBER OF VALUE TOKEN (COUPON) SALES SINCE INITIALIZATION -->
+	  <DataElement TA207="disable"></DataElement> 	<!-- * VALUE OF VALUE TOKEN (COUPON) SALES SINCE LAST RESET -->
+	  <DataElement TA208="disable"></DataElement> 	<!-- * NUMBER OF VALUE TOKEN (COUPON) SALES SINCE LAST RESET -->
+	</DataSegment>
+ 
+	<!--Data Segment DA2 -->
+	<DataSegment BlockIdentifier="DA2" state="enable">	
+	  <DataElement DA201="enable"></DataElement> 	<!-- VALUE OF CASHLESS 1 SALES SINCE INITIALIZATION -->
+	  <DataElement DA202="enable"></DataElement> 	<!-- NUMBER OF CASHLESS 1 SALES SINCE INITIALIZATION -->
+	  <DataElement DA203="enable"></DataElement> 	<!-- VALUE OF CASHLESS 1 SALES SINCE LAST RESET -->
+	  <DataElement DA204="enable"></DataElement> 	<!-- NUMBER OF CASHLESS 1 SALES SINCE LAST RESET -->
+	</DataSegment>
+
+	<!--Data Segment PA1 --> 
+	<DataSegment BlockIdentifier="PA1" state="enable">	
+	  <DataElement PA101="enable"></DataElement> 	<!-- PRODUCT IDENTIFIER -->
+	  <DataElement PA102="enable"></DataElement> 	<!-- PRICE -->
+	  <DataElement PA103="disable"></DataElement> 	<!-- PRODUCT IDENTIFICATION -->
+	  <DataElement PA104="disable"></DataElement> 	<!-- SELECTION STATUS -->
+	  <DataElement PA105="disable"></DataElement> 	<!-- CURRENT PRODUCT LEVEL -->
+	  <DataElement PA106="disable"></DataElement> 	<!-- MINIMUM PRODUCT LEVEL -->
+	</DataSegment>
+	
+	<!--Data Segment PA5 --> 
+	<DataSegment BlockIdentifier="PA5" state="enable">	
+	  <DataElement PA501="enable"></DataElement> 	<!-- DATE OF MOST RECENT SALE -->
+	  <DataElement PA502="enable"></DataElement> 	<!-- TIME OF MOST RECENT SALE -->
+	  <DataElement PA503="enable"></DataElement> 	<!-- NUMBER OF TIMES SOLD OUT PRODUCT SELECTED -->
+	</DataSegment>
+
+	<!--Data Segment PA2 -->
+	<DataSegment BlockIdentifier="PA2" state="enable">	
+	  <DataElement PA201="enable"></DataElement> 	<!-- NUMBER OF PAID PRODUCTS VENDED SINCE INITIALIZATION -->
+	  <DataElement PA202="enable"></DataElement> 	<!-- VALUE OF PAID PRODUCTS VENDED SINCE INITIALIZATION -->
+	  <DataElement PA203="enable"></DataElement> 	<!-- NUMBER OF PAID PRODUCTS VENDED SINCE LAST RESET -->
+	  <DataElement PA204="enable"></DataElement> 	<!-- VALUE OF PAID PRODUCTS VENDED SINCE LAST RESET -->
+	  <DataElement PA205="disable"></DataElement> 	<!-- *  NUMBER OF DISCOUNTS SINCE INITIALIZATION -->
+	  <DataElement PA206="disable"></DataElement> 	<!-- *  VALUE OF DISCOUNTS SINCE INITIALIZATION -->
+	  <DataElement PA207="disable"></DataElement> 	<!-- *  NUMBER OF DISCOUNTS SINCE LAST RESET -->
+	  <DataElement PA208="disable"></DataElement> 	<!-- *  VALUE OF DISCOUNTS SINCE LAST RESET -->
+	  <DataElement PA209="disable"></DataElement> 	<!-- *  NUMBER OF SURCHARGED PAID SINCE INITIATLIZATION -->
+	  <DataElement PA210="disable"></DataElement> 	<!-- *  VALUE OF SURCHARGES PAID SINCE INITIALIZATION -->
+	  <DataElement PA211="disable"></DataElement> 	<!-- *  NUMBER OF SURCHARGED PAID SINCE LAST RESET -->
+	  <DataElement PA212="disable"></DataElement> 	<!-- *  VALUE OF SURCHARGES PAID SINCE LAST RESET -->
+	</DataSegment>
+	
+	<!--Data Segment LA1 --> 
+	<DataSegment BlockIdentifier="LA1" state="enable">	
+	  <DataElement LA101="enable"></DataElement> 	<!-- PRICELIST NUMBER -->
+	  <DataElement LA102="enable"></DataElement> 	<!-- PRODUCT NUMBER -->
+	  <DataElement LA103="enable"></DataElement> 	<!-- PRICE -->
+	  <DataElement LA104="disable"></DataElement> 	<!-- NUMBER OF VENDS SINCE LAST RESET -->
+	  <DataElement LA105="disable"></DataElement> 	<!-- NUMBER OF VENDS SINCE INITIALISATION -->
+	</DataSegment>
+	
+	<!--Data Segment MA5 --> 
+	<DataSegment BlockIdentifier="MA5" state="enable">	
+	  <DataElement MA501="enable"></DataElement> 	<!-- Block Identifier -->
+	  <DataElement MA502="enable"></DataElement> 	<!-- Specific Configuration Data -->
+	  <DataElement MA503="enable"></DataElement> 	<!-- Optional Field #2 -->
+	  <DataElement MA504="enable"></DataElement> 	<!-- Optional Field #3 -->
+	  <DataElement MA505="enable"></DataElement>    <!-- Optional Field #4 -->
+	  <DataElement MA506="enable"></DataElement> 	<!-- Optional Field #5 -->
+	  <DataElement MA507="enable"></DataElement>    <!-- Optional Field #6 -->
+	  <DataElement MA508="enable"></DataElement>    <!-- Optional Field #7 -->
+	  <DataElement MA509="enable"></DataElement>    <!-- Optional Field #8 -->
+	  <DataElement MA510="disable"></DataElement>   <!-- Optional Field #9 -->
+	  <DataElement MA511="disable"></DataElement>   <!-- Optional Field #10 -->
+	</DataSegment>
+
+	<!-- Record Integrity Check G85 -->
+	<DataSegment BlockIdentifier="G85" state="enable">	
+	  <DataElement G8501="enable"></DataElement> 	<!--  RECORD INTEGRITY CHECK -->
+	</DataSegment>
+
+	<!-- Transaction Set Trailer SE -->
+	<DataSegment BlockIdentifier="SE" state="enable">	
+	  <DataElement SE01="enable"></DataElement> 	<!-- NUMBER OF INCLUDED SETS -->
+	  <DataElement SE02="enable"></DataElement> 	<!-- TRANSACTION SET CONTROL NUMBER -->
+	</DataSegment>
+
+	<!-- Application Trailer DXE -->
+	<DataSegment BlockIdentifier="DXE" state="enable">	
+	  <DataElement DXE01="enable"></DataElement> 	<!-- TRANSMISSION CONTROL NUMBER -->
+	  <DataElement DXE02="enable"></DataElement>	<!-- NUMBER OF INCLUDED SETS -->
+	</DataSegment>
+
+</DEXconfig>

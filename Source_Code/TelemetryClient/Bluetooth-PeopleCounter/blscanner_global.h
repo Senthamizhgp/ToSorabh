@@ -1,0 +1,12 @@
+#ifndef BLSCANNER_GLOBAL_H
+#define BLSCANNER_GLOBAL_H
+
+#include "QtCore/qglobal.h"
+
+#if defined(BLSCANNER_LIBRARY)
+#  define BLSCANNERSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define BLSCANNERSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // BLSCANNER_GLOBAL_H

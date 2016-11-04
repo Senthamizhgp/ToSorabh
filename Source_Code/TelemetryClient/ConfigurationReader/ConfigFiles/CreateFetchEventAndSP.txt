@@ -1,0 +1,235 @@
+DROP PROCEDURE IF EXISTS sp_FetchVendDetails; 
+
+CREATE PROCEDURE sp_FetchVendDetails() 
+Main: BEGIN 
+
+	#variables
+	DECLARE LastUpdatedTimeValue 		VARCHAR(20);
+	DECLARE NewLastUpdatedTimeValue 	VARCHAR(20);
+   DECLARE LastUpdatedCondition 		VARCHAR(200);
+   DECLARE SourceDB 					VARCHAR(20);
+   
+  #SELECT SLEEP(30);
+   
+   SET SourceDB = 'intel_vending';
+   
+   SELECT LastUpdated INTO LastUpdatedTimeValue FROM auditinfo WHERE LastUpdated IS NOT NULL
+   	ORDER BY `TimeStamp` DESC LIMIT 1;
+
+	IF(LastUpdatedTimeValue IS NULL) THEN
+		SET LastUpdatedCondition = '';
+	ELSE
+		SET LastUpdatedCondition = CONCAT(' AND `Timestamp` > ' , LastUpdatedTimeValue);
+	END IF;
+	
+	#--------------------------------------------------------------------------------------	
+	#vminfo
+	#Delete the existing data and insert the data from source db
+	SET @SqlQuery = 'Delete from vminfo';
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+
+	#insert the data from source db	
+	SET @SqlQuery = Concat('
+	Insert into `vminfo`(`Timestamp`,`Comm_Id`,`Version`,`Serial_No`,`Asset_No`,`Model_No`,`Machine_Build_Std`,`Machine_Location`,`Currency_Decimal`,`Currency_Code`,`Alphabetic_Currency_Code`)
+	Select `Timestamp`,`Comm_Id`,`Version`,`Serial_No`,`Asset_No`,`Model_No`,`Machine_Build_Std`,`Machine_Location`,`Currency_Decimal`,`Currency_Code`,`Alphabetic_Currency_Code`
+	 From ',SourceDB,'.vminfo;');
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+
+	#--------------------------------------------------------------------------------------	
+	#vmdeviceInfo
+	#Delete the existing data and insert the data from source db
+	SET @SqlQuery = 'Delete from vmdevice';
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+
+	#insert the data from source db	
+	SET @SqlQuery = Concat('
+	Insert into `vmdevice`(`VM_Asset_No`,`VM_Device_Type`,`SW_Version`,`Model_No`,`Serial_No`,`VM_Device_Asset_No`)
+	Select `VM_Asset_No`,`VM_Device_Type`,`SW_Version`,`Model_No`,`Serial_No`,`VM_Device_Asset_No`
+	 From ',SourceDB,'.vmdevice;');
+	 
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+
+	#--------------------------------------------------------------------------------------	
+	#cashInFlow
+	#Delete the existing data and insert the data from source db
+	SET @SqlQuery = 'Delete from cashin_info';
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+
+	#insert the data from source db	
+	SET @SqlQuery = Concat('
+	Insert into `cashin_info`(`Timestamp`,`Coins_in_CashBox`,`Coins_to_Tubes`,`Bills_in_CashBox`,`Cash_to_Recycler`)
+	Select `Timestamp`,`Coins_in_CashBox`,`Coins_to_Tubes`,`Bills_in_CashBox`,`Cash_to_Recycler`
+	 From ',SourceDB,'.cashin_info;');
+	 
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+
+	#--------------------------------------------------------------------------------------	
+	#configurationdata
+	#Delete the existing data and insert the data from source db
+	SET @SqlQuery = 'Delete from configurationdata';
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+
+	#insert the data from source db	
+	SET @SqlQuery = Concat('
+	Insert into `configurationdata`(`Timestamp`,`Block_Identifier`,`Configuration_Data`,`OptionalField2`,`OptionalField3`,`OptionalField4`,`OptionalField5`,
+		`OptionalField6`,`OptionalField7`,`OptionalField8`,`OptionalField9`,`OptionalField10`)
+	Select `Timestamp`,`Block_Identifier`,`Configuration_Data`,`OptionalField2`,`OptionalField3`,`OptionalField4`,`OptionalField5`,
+		`OptionalField6`,`OptionalField7`,`OptionalField8`,`OptionalField9`,`OptionalField10`
+	 From ',SourceDB,'.configurationdata;');
+	 
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+	
+	#--------------------------------------------------------------------------------------	
+	#coinMechanismInfo
+	#Delete the existing data and insert the data from source db
+	SET @SqlQuery = 'Delete from coinmechanism_info';
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+
+	#insert the data from source db	
+	SET @SqlQuery = Concat('
+	Insert into `coinmechanism_info`(`VM_DeviceId`,`Coin_Type_Number`,`Coin_value`,`Number_of_Coins_in_Tube`,`Coin_Insertion_during_Manual_Fill`,`Coins_Dispensed_during_Manual_Invent`,`IsCoinTubeFull`)
+	Select  `VM_DeviceId`,`Coin_Type_Number`,`Coin_value`,`Number_of_Coins_in_Tube`,`Coin_Insertion_during_Manual_Fill`,`Coins_Dispensed_during_Manual_Invent`,`IsCoinTubeFull` From ',SourceDB,'.coinmechanism_info;');
+	 
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+
+	#--------------------------------------------------------------------------------------
+   #eventinfo
+   SET @SqlQuery = Concat('
+   Insert into `eventinfo` (`Timestamp`,`Event_Identity`,`Duration_of_Event`, `EventCurrentState`)
+	Select `Timestamp`,`Event_Identity`,`Duration_of_Event`, `EventCurrentState`
+	 From ',SourceDB,'.eventinfo Where 1=1 ',LastUpdatedCondition,';');
+	
+	Select @SqlQuery; 
+
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+	#--------------------------------------------------------------------------------------
+	#stockinfo
+	#Delete the existing data and insert the data from source db
+	SET @SqlQuery = 'Delete from stockinfo';
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+
+	#insert the data from source db	
+	SET @SqlQuery = Concat('
+	Insert into `stockinfo`(`Product_ID`,`Stock`,`Timestamp`)
+	Select `Product_ID`,`Stock`, `Timestamp`
+	 From ',SourceDB,'.stockinfo;');
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+	#--------------------------------------------------------------------------------------
+   #product_vend_info
+   SET @SqlQuery = Concat('
+   Insert Into `product_vend_info` (`InternalKey`,`Transaction_ID`,`Timestamp`,`Product_price`,`SalePrice`,`Tax`,`Product_ID`,
+	 `VendType`,`ProductSold`,`PaymentSource`,`CampaignId`,`Discount_Ratio`,`ShelfID`,`ColumnID`,`VendorID`)
+	Select `InternalKey`,`Transaction_ID`,`Timestamp`,`Product_price`,`SalePrice`,`Tax`,`Product_ID`,
+	 `VendType`,`ProductSold`,`PaymentSource`,`CampaignId`,`Discount_Ratio`,`ShelfID`,`ColumnID`,`VendorID`
+	 From ',SourceDB,'.product_vend_info Where 1=1 ',LastUpdatedCondition,';');
+	 
+	Select @SqlQuery; 
+
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+	
+	#update the last max updated timestamp to auditinfo
+	Select Max(Lastupdated) Into NewLastUpdatedTimeValue from
+	(
+		Select Max(`Timestamp`) as Lastupdated From product_vend_info
+		union
+		Select Max(`Timestamp`) as Lastupdated From eventinfo
+		union
+		Select Max(`Timestamp`) as Lastupdated From vminfo
+		union
+		Select Max(`Timestamp`) as Lastupdated From stockinfo
+	)
+	as tempTimestamp;
+	
+	Select NewLastUpdatedTimeValue;
+	
+	If LastUpdatedTimeValue > NewLastUpdatedTimeValue Then
+		SET NewLastUpdatedTimeValue = LastUpdatedTimeValue;
+	end if;
+
+	#Update latest auditinfo record with last updated time	
+	Select Count(1) Into @RecCount from auditinfo;
+	
+	If @RecCount = 0 then
+		SET @SqlQuery = Concat('Insert into auditinfo (timestamp,Lastupdated) Values (',
+		NewLastUpdatedTimeValue,',',NewLastUpdatedTimeValue,');');
+	else
+		SET @SqlQuery = Concat('Update auditinfo SET Lastupdated = ',NewLastUpdatedTimeValue,
+			' ORDER BY `timestamp` DESC LIMIT 1;');
+	end if;
+
+	Select @SqlQuery; 
+	
+	PREPARE stmt FROM @SqlQuery;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;	
+	
+END;

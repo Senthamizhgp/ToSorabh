@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+*************************************************************************************************
+										Intel_Telemetry configuration file
+Project		Intel Smart Shelf
+Copyright	2010-2015 All rights reserved
+
+				The software supplied herewith by Intel's vendor to Intel for Smart Shelf - Telemetry Client 
+				for use exclusively on PC. The software is owned by the Intel, and is protected 
+				under applicable copyright laws.
+*************************************************************************************************
+This is the global input configuration file with the list of configurable parameters for the Telemetry application
+Following is the brief detail about the elements present in the file.
+
+-->
+<!DOCTYPE telemetryconfig [
+	<!ENTITY fileName SYSTEM "TelemetryConfiguration.xml">
+]>
+
+<telemetryconfig>
+	<!-- 
+		Element listing all the input configurable parameters. 
+    •	Reporting frequency : For sales & stock info, Sensor telemetry data, PIR, WiFi, BT and Real Sense
+    •	MQTT options like TLS, QoS etc
+    •	PIR - Enable/Disable
+    •	WiFi - Enable/Disable 
+    •	BT - Enable/Disable
+    •	Real Sense people counter - Enable/Disable    
+    •	Database purging options
+    •	General configuration required 
+	-->
+  <input_config>
+	<!-- "reportingfreq" element indicates the current reporting frequency of telemetry data to MQTT broker in multiples of 60 seconds -->
+	<!-- Telemetry data includes sales & stock info, sensor data, PIR, WiFi, BT and RealSense -->
+	<reportingfreq>120</reportingfreq>   
+	
+	<!--"deviceidentifier" element indicates the NUC ID of the device-->
+	<deviceidentifier>BlackBoxTester</deviceidentifier>
+	
+	<!-- "config_parameter" element indicates the module type for which the following configuration is defined -->	
+    <config_parameter type="SensorTelemetry" state="disable">
+		<!-- "globalacquisitionfreq" element indicates the acquisition frequency of the sensor to be used incase it not defined in the DeviceConfiguration.xml for that sensor (in seconds) -->
+		<globalacquisitionfreq>200</globalacquisitionfreq>   
+		<!-- "sensoracquisitionfreq" element indicates the acquisition frequency the corresponding sensor in seconds -->
+		<sensoracquisitionfreq sensor_name="Temperature sensor 3" acquisitionfreq="50" ></sensoracquisitionfreq>
+		<!-- Scope for adding further sensors under this section -->
+		<!-- "event" element indicates the events reported by the sensor telemetry devices while using Sunset pass APIs --> 
+		<event sensor_name="TEM_SENSOR_EXCEEDED" ></event>  
+		<json_header>	"protocol":{"id":1,
+							"name":"SunsetPassAPI",
+							"type":20},	
+				"sensoridentifier":"SunsetPassAPI_1",
+				"type":"sensor",
+				"valuetype":"0xFF82"</json_header>
+		<!-- "external_module" element to handle external processing units on this data type -->
+		<!-- "state" attribute indicates whether this module should be enabled or not -->
+		<external_module type="External Processing Unit" state="disable">
+			<plugin plugin_name="External Plugin 1" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 2" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 3" state="enable"></plugin>
+		</external_module>
+    </config_parameter>  
+	
+    <!-- "state" attribute indicates whether this module should be enabled or not -->
+    <config_parameter type="PIR" state="disable" left_sensor_name="GPI Sensor I" right_sensor_name="GPI Sensor II">
+		<!-- Scope to add any future tags -->
+		<json_header>	"protocol":{"id":2,
+							"name":"PIR",
+							"type":21},	
+				"sensoridentifier":"PIR",
+				"type":"sensor",
+				"valuetype":"0xFF82"</json_header>	
+		<!-- "external_module" element to handle external processing units on this data type -->
+		<!-- "state" attribute indicates whether this module should be enabled or not -->	
+		<external_module type="External Processing Unit" state="disable">
+			<plugin plugin_name="External Plugin 1" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 2" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 3" state="enable"></plugin>
+		</external_module>
+	</config_parameter>
+	
+	<!-- "state" attribute indicates whether this module should be enabled or not -->
+    <config_parameter type="WiFi" state="disable">
+		<!-- "acquisitionfreq" element indicates the scanning interval in seconds per WiFi channel -->
+		<acquisitionfreq>5</acquisitionfreq>
+		<!-- "device" element indicates the device Id -->
+		<device>wlp2s0</device>  
+		<!-- "rssi" element indicates the rssi filter -->
+		<rssi>-148</rssi>
+		<json_header>	"protocol":{"id":3,
+							"name":"WiFi",
+							"type":22},	
+				"sensoridentifier":"WiFi",
+				"type":"Module",
+				"valuetype":"0xFF82"</json_header>
+		<!-- "external_module" element to handle external processing units on this data type -->
+		<!-- "state" attribute indicates whether this module should be enabled or not -->
+		<external_module type="External Processing Unit" state="disable">
+			<plugin plugin_name="External Plugin 1" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 2" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 3" state="enable"></plugin>
+		</external_module>
+    </config_parameter>
+	
+	<!-- "state" attribute indicates whether this module should be enabled or not -->
+    <config_parameter type="BT" state="disable">
+		<!-- "acquisitionfreq" element indicates the acquisition rate for the BT data in milliseconds -->
+		<acquisitionfreq>5000</acquisitionfreq>   
+		<json_header>	"protocol":{"id":4,
+							"name":"BT",
+							"type":23},	
+				"sensoridentifier":"BT",
+				"type":"Module",
+				"valuetype":"0xFF82"</json_header>	 
+		<!-- "external_module" element to handle external processing units on this data type -->
+		<!-- "state" attribute indicates whether this module should be enabled or not -->
+		<external_module type="External Processing Unit" state="disable">
+			<plugin plugin_name="External Plugin 1" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 2" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 3" state="enable"></plugin>
+		</external_module>
+    </config_parameter>
+	
+	<!-- "state" attribute indicates whether this module should be enabled or not -->
+    <config_parameter type="RealSense" state="disable">   
+		<!-- "depthValue"  it is depth value for RealSense Camera in Feet min =1 ,max=7 ; Default value=2 -->
+    	<depthValue>2</depthValue>    
+		<!-- "enableWindow"  Enable Video Streaming UI in Desktop  .value "0"=false ,1="true" ; Default value=0 -->
+    	<enableWindow>0</enableWindow>      
+		<json_header>	"protocol":{"id":5,
+						"name":"RealSense",
+						"type":24},	
+						"sensoridentifier":"RealSense",
+						"type":"Module",
+						"valuetype":"0xFF82"</json_header>	
+		<!-- "external_module" element to handle external processing units on this data type -->
+		<!-- "state" attribute indicates whether this module should be enabled or not -->	
+		<external_module type="External Processing Unit" state="disable">
+			<plugin plugin_name="External Plugin 1" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 2" state="enable"></plugin>
+			<plugin plugin_name="External Plugin 3" state="enable"></plugin>
+		</external_module>
+    </config_parameter>	
+	
+    <config_parameter type="Database">
+		<!-- "globalacquisitionfreq" element indicates the acquisition frequency of telemetry data (from the individual tables) onto the Publish table in seconds -->
+		<globalacquisitionfreq>180</globalacquisitionfreq> 	  
+		<!-- "purgingfreq" element indicates the frequency at which the database is flushed for the 'mark for deletion' items (in seconds) -->
+		<purgingfreq>360</purgingfreq>
+		<sub_type type="Telemetry" state="enable">
+			<!-- "hostname" element indicates hostname of the database to be connected -->
+			<hostname>localhost</hostname> 	
+			<!-- "username" element indicates usernmae of the database to be connected -->
+			<username>root</username> 	
+			<!-- "password" element indicates password for the database to be connected -->
+			<password>intel</password>
+			<!-- "databasename" element indicates database name to be connected -->
+			<databasename>sensor_db</databasename>
+			<!-- "port" element indicates the port to be used for the connection -->
+			<port>3306</port>				
+		</sub_type>
+		<sub_type type="Audit" state="enable">
+			<!-- "hostname" element indicates hostname of the database to be connected -->
+			<hostname>localhost</hostname> 	
+			<!-- "username" element indicates usernmae of the database to be connected -->
+			<username>root</username> 	
+			<!-- "password" element indicates password for the database to be connected -->
+			<password>intel</password>
+			<!-- "databasename" element indicates database name to be connected -->
+			<databasename>vending_db</databasename>
+			<!-- "port" element indicates the port to be used for the connection -->
+			<port>3306</port>  
+			<json_header audit_report_type="DEX">	
+					"protocol":{"id":6,
+								"name":"DEX",
+								"type":25},	
+					"sensoridentifier":"DEX",
+					"type":"Module",
+					"valuetype":"0xFF82"</json_header>
+			<json_header audit_report_type="Transaction">	
+					"protocol":{"id":7,
+								"name":"Transaction",
+								"type":26},	
+					"sensoridentifier":"Transaction",
+					"type":"Module",
+					"valuetype":"0xFF82"</json_header>
+			<json_header audit_report_type="Stock">	
+					"protocol":{"id":8,
+								"name":"Stock",
+								"type":27},	
+					"sensoridentifier":"Stock",
+					"type":"Module",
+					"valuetype":"0xFF82"</json_header>	
+			<!-- "external_module" element to handle external processing units on this data type -->
+			<!-- "state" attribute indicates whether this module should be enabled or not -->	
+			<external_module type="External Processing Unit" state="enable">
+				<plugin plugin_name="DEX Converter" state="enable"></plugin>
+				<plugin plugin_name="External Plugin 2" state="disable"></plugin>
+				<plugin plugin_name="External Plugin 3" state="disable"></plugin>
+			</external_module>
+		</sub_type>  	  
+  </config_parameter>	  
+	<config_parameter type="General"></config_parameter>
+  </input_config>	
+
+  <output_config>
+    <config_parameter type="MQTT">
+      <!-- "endPoint" element indicates the endpoints URI of the server to connect -->
+      <endPoint>tcp://localhost:1883</endPoint>        
+      <!-- "TLS" element indicates whether to enable TLS option for the MQTT protocol - 0 (means No) or 1 (means Yes) -->
+      <TLS>1</TLS>    
+      <!-- "QoS" element indicates the QoS level to be selected for the MQTT protocol - 
+                  > At most once (0)
+                  > At least once (1)
+                  > Exactly once (2)
+      -->
+      <QoS>1</QoS>    
+	  <!-- "SendTopic" element indicates Topic Name for the messages to be send by the MQTT client -->	  
+	  <SendTopic>/TelemetryInformation</SendTopic>
+	  <!-- "ReceiveTopic" element indicates the Topic to which MQTT client subscribed -->
+	  <ReceiveTopic>Telemetry Information Ack</ReceiveTopic>
+    </config_parameter>
+	
+  </output_config>
+
+</telemetryconfig>
